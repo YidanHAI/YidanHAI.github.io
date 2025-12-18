@@ -1,28 +1,27 @@
 ---
 permalink: /
-title: "Academic Pages is a ready-to-fork GitHub Pages template for academic personal websites"
+title: "🌟 Hello，world！这里是黄一丹 (Yidan Huang) 的学术小站（还有待继续努力✊✊✊）"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. Incidentally, these same features make it a great template for anyone that needs to show off a professional template!
+欢迎光临！👋 这里是专门用来记录和分享我的学习轨迹、科研项目与奇思妙想的个人空间。很高兴与你在此相遇！
+我是一名对人工智能、计算机视觉与跨学科应用充满热情的探索者。即将于现在是中国科学院自动化研究所硕士一年级，目前正摩拳擦掌，准备在科研的海洋里继续“升级打怪”！🚀
 
- You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and Markdown files, add your own PDFs and other content, and have your own site for free, with no ads!
-
-A data-driven personal website
+我的学术之旅
 ======
-Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured Markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various Markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
+我的故事始于华中农业大学，以3.92/4.00 的绩点和专业第一（1/102）的成绩毕业，并幸运地获得了两次国家奖学金。📚 但这只是起点！我热衷于将数学和算法的力量，应用到从农业（缺陷鸡蛋分选）🐣到能源（光伏预测）☀️，再到生物信息学（智能育种）🌽的各种有趣问题上。
 
-Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your Markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over - just be sure to save the Markdown files! You can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
+在这里，你会看到：
+*   🧪 我的科研项目：包括那些和鸡蛋、光伏、基因组数据“斗智斗勇”的实战经历。
+*   📄 我的出版物与专利：已发表的论文和正在申请的发明专利干货（虽然很少就是啦！）。
+*   🏆 我的荣誉与奖项：从数学建模到数学竞赛的一点点成绩积累。
+*   📜 我的动态简历：一个会随着我成长而自动更新的CV页面。
+*   ✍️ 我的随笔与思考：（未来也许会有的）技术博客或学习笔记。
+  
 
-For those users that need more advanced functionality, the template also supports the following popular tools:
-- [MathJax](https://www.mathjax.org/) for mathematical equations
-- [Mermaid](https://mermaid.js.org/) for diagraming
-- [Plotly](https://plotly.com/javascript/) for plotting
-
-Getting started
 ======
 1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
 1. Fork [this template](https://github.com/academicpages/academicpages.github.io) by clicking the "Use this template" button in the top right. 
