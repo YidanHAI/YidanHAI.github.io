@@ -9,14 +9,14 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # Currently available options are "default", "air"
-title                    : "Your Name / Site Title"
+title                    : "Yidan Huang / Site Title"
 title_separator          : "-"
-name                     : &name "Your Name"
-description              : &description "Your Name's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
-url                      : https://academicpages.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
+name                     : &name "黄一丹 (Yidan Huang)"
+description              : &description "Yidan Huang: Master of Science from the Institute of Automation, Chinese Academy of Sciences, specializing in cutting-edge research on multimodal and inference large models, AI for Science, and Agents. Committed to exploring the integration of large models (fine-tuning /RAG) and computer vision to solve cross-disciplinary scientific problems."   # Update this with a general description of your site, this is the default if not overridden by a page
+url                      : https://yidanhai.github.io
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "academicpages/academicpages.github.io"
+repository               : "YidanHAI/YidanHAI.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
@@ -24,18 +24,18 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Your Sidebar Name"
+  name             : "黄一丹 (Yidan Huang)"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "Master's degree from the Institute of Automation, Chinese Academy of Sciences"
+  location         : "Beijing, China / Wuhan, China"
+  employer         : "University of Chinese Academy of Sciences (UCAS)"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "huangyidan2025@ia.ac.cn | huangyidan25@mails.ucas.ac.cn | huangyidan002@gmail.com" 
 
   # Academic websites
   academia         : # URL
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : "https://scholar.google.com/citations?user=6urQIKIAAAAJ&hl=zh-CN"
   inspire-hep      : # URL
   impactstory      : # URL
   orcid            : "https://orcid.org/yourorcidurl"
@@ -51,8 +51,8 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "academicpages"
-  kaggle           : # Username  
+  github           : "YidanHAI"
+  kaggle           : "HK_Danmel"  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
   # Social media
