@@ -23,8 +23,8 @@ redirect_from:
 
 Publication
 ======
-Cheng, Y.; Huang, Y.; Zhang, J.; Zhang, X.; Wang, Q.; Fan, W. Robust Detection of Cracked Eggs Using a Multi-Domain Training Method for Practical Egg Production. Foods 2024, 13, 2313. [**[PDF]**](https://doi.org/10.3390/foods13152313){: .highlight-link}
-X. Gui, L. Tan and Y. Huang(co-first author)*</strong>, "A study of a photovoltaic power prediction method combining BiLSTM and GWO," 2024 5th International Conference on Computer Engineering and Application (ICCEA), Hangzhou, China, 2024, pp. 1785-1789, [**[PDF]**](10.1109/ICCEA62105.2024.10604113){: .highlight-link}
+Cheng, Y.; Huang, Y.; Zhang, J.; Zhang, X.; Wang, Q.; Fan, W. Robust Detection of Cracked Eggs Using a Multi-Domain Training Method for Practical Egg Production. Foods 2024, 13, 2313. [**[PDF]**](https://doi.org/10.3390/foods13152313)
+X. Gui, L. Tan and Y. Huang(co-first author)*</strong>, "A study of a photovoltaic power prediction method combining BiLSTM and GWO," 2024 5th International Conference on Computer Engineering and Application (ICCEA), Hangzhou, China, 2024, pp. 1785-1789, [**[PDF]**](10.1109/ICCEA62105.2024.10604113)
 
 Invention patent
 ======
