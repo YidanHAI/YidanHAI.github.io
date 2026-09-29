@@ -113,10 +113,10 @@ PAGES = (
 ARTICLES = (
     ("/writing/attribute-binding/", "When does a color become the car's?",
      "A counterfactual view of attribute assignment during diffusion sampling.",
-     datetime(2026, 9, 30, 8, 0, tzinfo=timezone.utc)),
+     datetime(2026, 9, 29, 17, 0, tzinfo=timezone.utc)),
     ("/writing/feature-interface/", "A vector is not yet a token",
      "Designing an interface for fixed multimodal evidence and pretrained token backbones.",
-     datetime(2026, 9, 30, 8, 0, tzinfo=timezone.utc)),
+     datetime(2026, 9, 29, 17, 0, tzinfo=timezone.utc)),
     ("/writing/evidence-paths/", "A hard question is not necessarily a hard search",
      "Why answer complexity alone does not teach a search agent to gather evidence step by step.",
      datetime(2026, 9, 29, 8, 0, tzinfo=timezone.utc)),

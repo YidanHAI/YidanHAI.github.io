@@ -5,20 +5,20 @@
     <link>https://yidanhai.github.io/writing/</link>
     <description>Research notes on generative models, multimodal learning, agents, and post-training.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 30 Sep 2026 08:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 29 Sep 2026 17:00:00 +0000</lastBuildDate>
     <item>
       <title>When does a color become the car's?</title>
       <link>https://yidanhai.github.io/writing/attribute-binding/</link>
       <guid>https://yidanhai.github.io/writing/attribute-binding/</guid>
       <description>A counterfactual view of attribute assignment during diffusion sampling.</description>
-      <pubDate>Wed, 30 Sep 2026 08:00:00 +0000</pubDate>
+      <pubDate>Tue, 29 Sep 2026 17:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A vector is not yet a token</title>
       <link>https://yidanhai.github.io/writing/feature-interface/</link>
       <guid>https://yidanhai.github.io/writing/feature-interface/</guid>
       <description>Designing an interface for fixed multimodal evidence and pretrained token backbones.</description>
-      <pubDate>Wed, 30 Sep 2026 08:00:00 +0000</pubDate>
+      <pubDate>Tue, 29 Sep 2026 17:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A hard question is not necessarily a hard search</title>
