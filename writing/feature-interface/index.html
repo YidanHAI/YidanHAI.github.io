@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3f2ec">
+  <meta name="author" content="Yidan Huang">
+  <meta name="description" content="Why projecting fixed multimodal features into a token backbone is only the beginning of a readable interface.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Yidan Huang">
+  <meta property="og:title" content="A vector is not yet a token — Yidan Huang">
+  <meta property="og:description" content="Why projecting fixed multimodal features into a token backbone is only the beginning of a readable interface.">
+  <meta property="og:url" content="https://yidanhai.github.io/writing/feature-interface/">
+  <meta property="og:image" content="https://yidanhai.github.io/assets/img/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://yidanhai.github.io/writing/feature-interface/">
+  <link rel="alternate" type="application/rss+xml" title="Yidan Huang — Writing" href="/feed.xml">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script>try{if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
+  <script src="/assets/js/site.js" defer></script>
+  <title>A vector is not yet a token — Yidan Huang</title>
+</head>
+<body class="article-page" data-current="writing">
+  <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳转到正文</span></a>
+  <header class="site-header" id="top">
+    <div class="header-inner wrap">
+      <a class="brand" href="/" aria-label="Yidan Huang — Home">
+        <span class="brand-mark" aria-hidden="true">Y<span>·</span>H</span>
+        <span class="brand-copy">YIDAN HUANG <small>RESEARCH &amp; ENGINEERING</small></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="/" data-nav="home"><span data-lang="en">Home</span><span data-lang="zh">首页</span></a>
+        <a href="/work/" data-nav="work"><span data-lang="en">Work</span><span data-lang="zh">项目</span></a>
+        <a href="/writing/" data-nav="writing"><span data-lang="en">Writing</span><span data-lang="zh">写作</span></a>
+        <a href="/about/" data-nav="about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
+        <a href="/cv/" data-nav="cv"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
+        <a class="nav-contact" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span><span aria-hidden="true"> ↗</span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <article class="article-shell">
+      <header class="article-header wrap-narrow">
+        <a class="back-link" href="/writing/"><span aria-hidden="true">←</span> <span data-lang="en">All writing</span><span data-lang="zh">返回写作</span></a>
+        <p class="eyebrow"><span class="eyebrow-dot"></span>RESEARCH NOTE <span class="article-divider">/</span> SEP 2026</p>
+        <h1><span data-lang="en">A vector is not yet a token.</span><span data-lang="zh">向量进了模型，不代表模型读懂了。</span></h1>
+        <p class="article-deck"><span data-lang="en">A projection can match a language model's hidden size. It cannot, by itself, make external multimodal features meaningful to a pretrained token backbone.</span><span data-lang="zh">线性投影能对齐语言模型的隐藏维度，却不能凭此保证预训练 token 骨干读懂外部多模态特征。</span></p>
+        <div class="article-byline"><span>YIDAN HUANG / 黄一丹</span><span>3 MIN READ</span></div>
+      </header>
+      <div class="article-banner banner-interface" aria-hidden="true"><span>FEATURES</span><i></i><span>SLOTS</span><i></i><span>READER</span><i></i><span>TASK</span></div>
+      <div class="article-body wrap-narrow">
+        <p><span data-lang="en">Many multimodal benchmarks provide fixed vectors already extracted from text, audio, and video. A tempting route is to project each vector to a language model's hidden width and feed the result as a token. The tensors fit. But the backbone learned to process its own embedding distribution, not arbitrary coordinates from an external encoder.</span><span data-lang="zh">不少多模态基准已经提供从文本、音频和视频中提取好的固定向量。一个自然做法是把每个向量投影到语言模型的隐藏维度，再当作 token 输入。张量形状对了，但骨干学会处理的是自己的 embedding 分布，而不是外部编码器给出的任意坐标。</span></p>
+        <p><span data-lang="en">The problem is not one-dimensional. Is the input scale compatible with native embeddings? Can a single token carry enough evidence from a modality? Does the backbone route the unfamiliar code into useful task states? What should it see when a modality is missing? TEAL treats these as four separate interface questions rather than assuming that a learned projection answers all of them.</span><span data-lang="zh">问题不止一个：输入尺度是否接近原生 embedding？每个模态只有一个 token 时，证据带宽够不够？骨干能否把陌生编码路由成有用的任务状态？某个模态缺失时又该输入什么？TEAL 把它们作为四个独立的接口问题，而不是假设学到一个投影层就能全部解决。</span></p>
+
+        <h2><span data-lang="en">Measure the evidence before the interface</span><span data-lang="zh">先测证据，再测接口</span></h2>
+        <p><span data-lang="en">Before judging a token reader, we need to know what the original features can support. Models that read the coordinates directly establish a reference for the available supervised signal. No-backbone and randomly initialized controls then ask how much of a token reader's performance comes from the writer and task head, and how much requires pretrained computation. Missing-modality and shuffled-feature tests check whether the reader uses the evidence we think it uses.</span><span data-lang="zh">评价 token 读取器之前，得先知道原始特征本身能支持什么。直接读取特征坐标的模型提供监督信息的参考；移除骨干和随机初始化对照，再区分投影器、任务头与预训练计算各自的贡献。模态缺失和特征打乱实验，则检验读取器是否真的使用了预期的证据。</span></p>
+        <p><span data-lang="en">The data protocol matters as much as the architecture. Dialog-level splits keep utterances from the same conversation together, and normalization fitted only on training data keeps evaluation information out of the interface.</span><span data-lang="zh">数据协议与模型结构同样重要：按对话划分数据，避免同一段对话的语句跨训练与验证集合；标准化参数只在训练集上拟合，避免评估信息进入接口。</span></p>
+
+        <aside class="article-pullquote"><span data-lang="en">Matching a hidden size is a wiring step. Readability is an empirical question.</span><span data-lang="zh">对齐隐藏维度只是接线；模型能否读懂，仍要靠实验回答。</span></aside>
+
+        <h2><span data-lang="en">Build an interface the model can read</span><span data-lang="zh">构建真正可读的接口</span></h2>
+        <p><span data-lang="en">TEAL writes each modality into multiple typed evidence slots. Modality and slot embeddings identify where the evidence came from; native-scale calibration brings the new tokens closer to the backbone's usual activation scale; learned missing tokens give absent evidence its own symbol. A frozen reader and a LoRA-adapted reader then test how much the interface alone can do and where routing needs to change.</span><span data-lang="zh">TEAL 把每种模态写入多个带类型的证据槽。模态和槽位编码标明证据来源，原生尺度校准让新 token 接近骨干熟悉的激活范围，可学习的缺失标记则为“没有证据”提供独立符号。随后用冻结读取器与 LoRA 适配读取器，检验接口本身的作用以及路由需要改变的地方。</span></p>
+        <p><span data-lang="en">Here the Qwen backbone reads pre-extracted features; it is not processing raw audio or video end to end. That scope makes the experiment more informative. It isolates a question that appears well beyond affective computing: when we attach a new source of information to a pretrained model, what proves the model can actually use it?</span><span data-lang="zh">在这个项目里，Qwen 骨干读取的是预提取特征，并不直接端到端处理原始音视频。这个范围让实验更清晰：它隔离出一个超越情感计算的问题——给预训练模型接上新的信息来源后，什么证据能证明模型真的用上了它？</span></p>
+      </div>
+      <footer class="article-end wrap-narrow"><div><span>RELATED WORK</span><a href="/work/#teal">TEAL ↗</a></div><div><span>NEXT NOTE</span><a href="/writing/evidence-paths/"><span data-lang="en">A hard question is not necessarily a hard search</span><span data-lang="zh">难题，不一定需要难搜索</span> ↗</a></div></footer>
+    </article>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">LET'S CONNECT</span><span data-lang="zh">保持联系</span></p>
+          <h2><span data-lang="en">Good work starts<br>with a good question.</span><span data-lang="zh">好的工作，始于<br>一个好的问题。</span></h2>
+        </div>
+        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email Yidan Huang"><span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-id"><strong>YIDAN HUANG <span>黄一丹</span></strong><p><span data-lang="en">Generative models · Multimodal learning · Agents</span><span data-lang="zh">生成模型 · 多模态学习 · 智能体</span></p></div>
+        <div class="footer-links">
+          <a href="mailto:huangyidan2025@ia.ac.cn">Email</a>
+          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <p class="copyright">© <span id="year">2026</span> Yidan Huang</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,25 @@
+    <article class="article-shell">
+      <header class="article-header wrap-narrow">
+        <a class="back-link" href="/writing/"><span aria-hidden="true">←</span> <span data-lang="en">All writing</span><span data-lang="zh">返回写作</span></a>
+        <p class="eyebrow"><span class="eyebrow-dot"></span>RESEARCH NOTE <span class="article-divider">/</span> SEP 2026</p>
+        <h1><span data-lang="en">When does a color become the car's?</span><span data-lang="zh">颜色，究竟属于谁？</span></h1>
+        <p class="article-deck"><span data-lang="en">A text-to-image model can draw the right objects and the right colors, yet connect them incorrectly. The useful question is when that connection becomes difficult to change.</span><span data-lang="zh">文生图模型可能画对了对象，也画对了颜色，却把两者连错。更有用的问题是：这种归属从何时起难以改变？</span></p>
+        <div class="article-byline"><span>YIDAN HUANG / 黄一丹</span><span>3 MIN READ</span></div>
+      </header>
+      <div class="article-banner banner-binding" aria-hidden="true"><span>PROMPT</span><i></i><span>DENOISE</span><i></i><span>BIND</span><i></i><span>IMAGE</span></div>
+      <div class="article-body wrap-narrow">
+        <p><span data-lang="en">Imagine asking for a purple car beside an orange house. The generated image contains a car, a house, purple, and orange—but the car is orange and the house is purple. An object-presence check would pass. A color-presence check would also pass. The failure is in the assignment between them.</span><span data-lang="zh">想象我们要求一辆紫色汽车停在橙色房子旁。生成图里汽车、房子、紫色和橙色都出现了，汽车却是橙色，房子成了紫色。只检查对象是否存在会通过，只检查颜色是否存在也会通过；错的是两者之间的归属关系。</span></p>
+        <p><span data-lang="en">A final image cannot tell us when that assignment was made. In CrystalBind, we study the denoising path itself. Starting from the same noise, we let one prompt guide the process and then swap the two attributes at different steps. The resulting image gives a counterfactual test: can later text still redirect which object owns which color?</span><span data-lang="zh">仅看最终图像，无法知道归属何时确定。在 CrystalBind 中，我们研究去噪过程本身：固定初始噪声，先用原提示词去噪，再在不同步骤交换两个属性。最终图像提供一个反事实检验：后续文本还能否改变“哪种颜色属于哪个对象”？</span></p>
+
+        <h2><span data-lang="en">Separate reading from changing</span><span data-lang="zh">区分读到变化与改变结果</span></h2>
+        <p><span data-lang="en">A failed late switch does not identify a single cause. The denoiser might not respond to the new condition. It might respond, but the sampler may write too little of that difference into the latent. Or the change may be written and then fade before the final image. We analyze these as read, write, and propagate: three different links in the path from text to ownership.</span><span data-lang="zh">一次较晚的提示词切换没有成功，并不能说明只有一个原因：去噪器可能没有响应新条件；也可能响应了，但采样器写入 latent 的变化太小；还可能写入了变化，却未能保留到最终图像。我们把它拆成读取、写入、传播三个环节，分别检查文本如何影响属性归属。</span></p>
+        <p><span data-lang="en">This distinction keeps the method honest. Stronger attention is not automatically stronger control, and a model noticing a new description does not prove that the final image can still be changed.</span><span data-lang="zh">这样拆解，才能避免把“注意力更强”直接等同于“控制更有效”，也避免把模型能辨别新描述，误当成最终图像仍可改写的证据。</span></p>
+
+        <aside class="article-pullquote"><span data-lang="en">Binding has a time, a place, and an objective. Guidance should be designed for all three.</span><span data-lang="zh">属性绑定有发生的时间、所在的区域，也有需要优化的目标。引导设计必须同时回答这三个问题。</span></aside>
+
+        <h2><span data-lang="en">Guide the assignment, not just the object</span><span data-lang="zh">引导属性归属，而不只是对象出现</span></h2>
+        <p><span data-lang="en">CrystalBind turns that diagnosis into an inference-time design. It focuses updates in an early window, refreshes noun regions from the model's current cross-attention, and uses separate terms for object presence and directional attribute ownership. The region is a live target because the scene layout may still be moving; the ownership term asks not only for the right pairing, but also against the competing pairing.</span><span data-lang="zh">CrystalBind 将诊断转化为推理时设计：把更新集中在较早的窗口，从当前 cross-attention 动态刷新名词区域，并分别优化对象出现与属性归属。区域目标需要持续更新，因为场景布局仍可能变化；归属目标不仅要增强正确配对，还要抑制竞争配对。</span></p>
+        <p><span data-lang="en">No new generator weights are needed for this approach. The larger lesson is methodological: before increasing the strength of a guidance loss, find out which decision it is trying to change, when that decision remains reversible, and whether the intervention survives to the output.</span><span data-lang="zh">这一方法不需要训练新的生成模型权重。更一般的方法论是：在增强引导损失之前，先弄清它想改变什么决策、这个决策何时仍可逆，以及干预能否影响最终输出。</span></p>
+      </div>
+      <footer class="article-end wrap-narrow"><div><span>RELATED WORK</span><a href="/work/#crystalbind">CrystalBind ↗</a></div><div><span>NEXT NOTE</span><a href="/writing/feature-interface/"><span data-lang="en">A vector is not yet a token</span><span data-lang="zh">向量进了模型，不代表模型读懂了</span> ↗</a></div></footer>
+    </article>

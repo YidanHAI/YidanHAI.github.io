@@ -1,20 +1,28 @@
     <section class="page-hero wrap">
       <p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">WRITING / FIELD NOTES</span><span data-lang="zh">写作 / 研究手记</span></p>
-      <div class="page-hero-grid"><h1><span data-lang="en">A place to think <em>in public.</em></span><span data-lang="zh">把思考写出来，<em>供人检验。</em></span></h1><p><span data-lang="en">Short, concrete notes from building agents and training systems. These essays explain the design questions behind the work.</span><span data-lang="zh">来自智能体与训练系统实践的短文，记录方法背后的真实设计问题。</span></p></div>
+      <div class="page-hero-grid"><h1><span data-lang="en">A place to think <em>in public.</em></span><span data-lang="zh">把思考写出来，<em>供人检验。</em></span></h1><p><span data-lang="en">Short, concrete notes from generative modeling, multimodal learning, agents, and training systems. Each essay starts with a design question.</span><span data-lang="zh">来自生成模型、多模态学习、智能体与训练系统的短文，从一个具体的设计问题开始。</span></p></div>
       <div class="page-hero-line"><span>IDEAS</span><span>METHODS</span><span>ENGINEERING</span></div>
     </section>
     <section class="writing-collection wrap">
-      <div class="writing-collection-head"><span><span data-lang="en">ALL NOTES</span><span data-lang="zh">全部文章</span></span><span>03 / 2026</span></div>
-      <a class="writing-card" href="/writing/evidence-paths/">
+      <div class="writing-collection-head"><span><span data-lang="en">ALL NOTES</span><span data-lang="zh">全部文章</span></span><span>05 / 2026</span></div>
+      <a class="writing-card" href="/writing/attribute-binding/">
         <div class="writing-card-index">01 <span>RESEARCH NOTE</span></div>
+        <div class="writing-card-body"><h2><span data-lang="en">When does a color become the car's?</span><span data-lang="zh">颜色，究竟属于谁？</span></h2><p><span data-lang="en">A diffusion model can draw every requested object and color, then assign the colors to the wrong objects. Counterfactual prompt switches offer a way to study when that assignment changes.</span><span data-lang="zh">扩散模型可能画对对象和颜色，却配错归属。反事实提示词切换提供了研究归属何时还能改变的方法。</span></p><div class="writing-card-meta"><span>GENERATIVE MODELS</span><span>SEP 2026</span></div></div><span class="writing-card-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="writing-card" href="/writing/feature-interface/">
+        <div class="writing-card-index">02 <span>RESEARCH NOTE</span></div>
+        <div class="writing-card-body"><h2><span data-lang="en">A vector is not yet a token</span><span data-lang="zh">向量进了模型，不代表模型读懂了</span></h2><p><span data-lang="en">Projecting fixed multimodal features to the right hidden size solves a wiring problem. Readability needs an interface—and controls that show what the backbone actually contributes.</span><span data-lang="zh">把固定多模态特征投影到正确维度，只解决了接线问题。可读性需要更好的接口，也需要辨明骨干贡献的对照实验。</span></p><div class="writing-card-meta"><span>MULTIMODAL LEARNING</span><span>SEP 2026</span></div></div><span class="writing-card-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="writing-card" href="/writing/evidence-paths/">
+        <div class="writing-card-index">03 <span>RESEARCH NOTE</span></div>
         <div class="writing-card-body"><h2><span data-lang="en">A hard question is not necessarily a hard search</span><span data-lang="zh">难题，不一定需要难搜索</span></h2><p><span data-lang="en">Multi-hop questions can be solved with one search. What matters for agent training is the path a model must take to find the evidence.</span><span data-lang="zh">多跳问题也可能一次检索就得到答案。训练搜索智能体时，更重要的是模型找到证据的路径。</span></p><div class="writing-card-meta"><span>SEARCH AGENTS</span><span>SEP 2026</span></div></div><span class="writing-card-arrow" aria-hidden="true">↗</span>
       </a>
       <a class="writing-card" href="/writing/persistent-state/">
-        <div class="writing-card-index">02 <span>RESEARCH NOTE</span></div>
+        <div class="writing-card-index">04 <span>RESEARCH NOTE</span></div>
         <div class="writing-card-body"><h2><span data-lang="en">A search agent needs a ledger, not a longer transcript</span><span data-lang="zh">搜索智能体需要一本账，而非更长的对话</span></h2><p><span data-lang="en">A persistent record of evidence, candidates, and missing constraints helps the agent carry useful state through a long run.</span><span data-lang="zh">持久记录证据、候选与缺失约束，才能让智能体在长程任务里带着有效状态前进。</span></p><div class="writing-card-meta"><span>AGENT STATE</span><span>SEP 2026</span></div></div><span class="writing-card-arrow" aria-hidden="true">↗</span>
       </a>
       <a class="writing-card" href="/writing/training-signals/">
-        <div class="writing-card-index">03 <span>ENGINEERING NOTE</span></div>
+        <div class="writing-card-index">05 <span>ENGINEERING NOTE</span></div>
         <div class="writing-card-body"><h2><span data-lang="en">The data contract is part of the model</span><span data-lang="zh">数据契约，也是模型的一部分</span></h2><p><span data-lang="en">Supervision masks, packed sequences, tool turns, and checkpoint lineage decide which behavior the model can actually learn.</span><span data-lang="zh">监督掩码、序列打包、工具轮次和模型权重血缘，决定模型究竟学到了什么。</span></p><div class="writing-card-meta"><span>POST-TRAINING</span><span>SEP 2026</span></div></div><span class="writing-card-arrow" aria-hidden="true">↗</span>
       </a>
       <div class="rss-callout"><span><span data-lang="en">Prefer a reader?</span><span data-lang="zh">习惯用阅读器？</span></span><a href="/feed.xml"><span data-lang="en">Subscribe by RSS</span><span data-lang="zh">订阅 RSS</span> ↗</a></div>

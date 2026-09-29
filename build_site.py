@@ -14,7 +14,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parent
 SOURCE = ROOT / "site_src"
 BASE_URL = "https://yidanhai.github.io"
-UPDATED = "2026-09-29"
+UPDATED = "2026-09-30"
 
 
 @dataclass(frozen=True)
@@ -44,20 +44,32 @@ PAGES = (
     Page(
         "/", "home.html",
         "Yidan Huang — Research & Engineering",
-        "Yidan Huang works on foundation-model post-training, evidence-grounded search agents, and rigorous agent evaluation.",
+        "Yidan Huang researches generative models, multimodal learning, foundation-model post-training, and evidence-grounded agents.",
         "home", "home-page",
     ),
     Page(
         "/work/", "work.html",
         "Selected Work — Yidan Huang",
-        "Selected research and engineering work across long-horizon agents, model post-training, and interactive evaluation.",
+        "Selected work on diffusion attribute binding, multimodal feature interfaces, foundation models, and long-horizon agents.",
         "work", "inner-page",
     ),
     Page(
         "/writing/", "writing.html",
         "Writing — Yidan Huang",
-        "Field notes on evidence-grounded search, persistent agent state, and reliable model post-training.",
+        "Research notes on generative models, multimodal feature interfaces, agents, and model training.",
         "writing", "inner-page",
+    ),
+    Page(
+        "/writing/attribute-binding/", "attribute-binding.html",
+        "When does a color become the car's? — Yidan Huang",
+        "A research note on when diffusion models assign attributes to objects and how to study that decision.",
+        "writing", "article-page", "article",
+    ),
+    Page(
+        "/writing/feature-interface/", "feature-interface.html",
+        "A vector is not yet a token — Yidan Huang",
+        "Why projecting fixed multimodal features into a token backbone is only the beginning of a readable interface.",
+        "writing", "article-page", "article",
     ),
     Page(
         "/writing/evidence-paths/", "evidence-paths.html",
@@ -80,7 +92,7 @@ PAGES = (
     Page(
         "/about/", "about.html",
         "About — Yidan Huang",
-        "About Yidan Huang: researcher and engineer working on foundation models and long-horizon agents.",
+        "About Yidan Huang: researcher and engineer studying generative models, multimodal learning, and long-horizon agents.",
         "about", "inner-page",
     ),
     Page(
@@ -99,12 +111,21 @@ PAGES = (
 
 
 ARTICLES = (
+    ("/writing/attribute-binding/", "When does a color become the car's?",
+     "A counterfactual view of attribute assignment during diffusion sampling.",
+     datetime(2026, 9, 30, 8, 0, tzinfo=timezone.utc)),
+    ("/writing/feature-interface/", "A vector is not yet a token",
+     "Designing an interface for fixed multimodal evidence and pretrained token backbones.",
+     datetime(2026, 9, 30, 8, 0, tzinfo=timezone.utc)),
     ("/writing/evidence-paths/", "A hard question is not necessarily a hard search",
-     "Why answer complexity alone does not teach a search agent to gather evidence step by step."),
+     "Why answer complexity alone does not teach a search agent to gather evidence step by step.",
+     datetime(2026, 9, 29, 8, 0, tzinfo=timezone.utc)),
     ("/writing/persistent-state/", "A search agent needs a ledger, not a longer transcript",
-     "Persistent evidence and candidate state make long-horizon decisions traceable."),
+     "Persistent evidence and candidate state make long-horizon decisions traceable.",
+     datetime(2026, 9, 29, 8, 0, tzinfo=timezone.utc)),
     ("/writing/training-signals/", "The data contract is part of the model",
-     "Masks, packing, tool turns, and evaluation lineage shape what an agent learns."),
+     "Masks, packing, tool turns, and evaluation lineage shape what an agent learns.",
+     datetime(2026, 9, 29, 8, 0, tzinfo=timezone.utc)),
 )
 
 
@@ -157,24 +178,24 @@ def write_redirects() -> None:
 
 
 def write_feed() -> None:
-    published = format_datetime(datetime(2026, 9, 29, 8, 0, tzinfo=timezone.utc))
+    latest = format_datetime(max(article[3] for article in ARTICLES))
     channel = ET.Element("channel")
     for tag, value in (
         ("title", "Yidan Huang — Writing"),
         ("link", f"{BASE_URL}/writing/"),
-        ("description", "Research notes on agents, evidence, and post-training."),
+        ("description", "Research notes on generative models, multimodal learning, agents, and post-training."),
         ("language", "en"),
-        ("lastBuildDate", published),
+        ("lastBuildDate", latest),
     ):
         ET.SubElement(channel, tag).text = value
-    for path, title, description in ARTICLES:
+    for path, title, description, published_at in ARTICLES:
         item = ET.SubElement(channel, "item")
         for tag, value in (
             ("title", title),
             ("link", f"{BASE_URL}{path}"),
             ("guid", f"{BASE_URL}{path}"),
             ("description", description),
-            ("pubDate", published),
+            ("pubDate", format_datetime(published_at)),
         ):
             ET.SubElement(item, tag).text = value
     rss = ET.Element("rss", {"version": "2.0"})

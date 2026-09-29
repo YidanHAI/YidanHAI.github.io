@@ -16,3 +16,9 @@ benchmark scores as established results.
 
 ACTS and ClueFlow appear as ongoing research projects. The field notes explain
 their design questions without claims of acceptance or headline performance.
+
+The CrystalBind and TEAL descriptions draw on the local project brief
+`hyd_cv/简历_项目经历_CFO_Qwen.md`. They are presented as ongoing research, not
+accepted publications. The public copy explains the research questions,
+experimental controls, and method design without reporting manuscript-only
+performance figures or attributing an unconfirmed author position.
