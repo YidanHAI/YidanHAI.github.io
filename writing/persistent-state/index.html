@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3f2ec">
+  <meta name="author" content="Yidan Huang">
+  <meta name="description" content="Persistent evidence and candidate state make long-horizon agent decisions easier to trace and train.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Yidan Huang">
+  <meta property="og:title" content="A search agent needs a ledger, not a longer transcript — Yidan Huang">
+  <meta property="og:description" content="Persistent evidence and candidate state make long-horizon agent decisions easier to trace and train.">
+  <meta property="og:url" content="https://yidanhai.github.io/writing/persistent-state/">
+  <meta property="og:image" content="https://yidanhai.github.io/assets/img/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://yidanhai.github.io/writing/persistent-state/">
+  <link rel="alternate" type="application/rss+xml" title="Yidan Huang — Writing" href="/feed.xml">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script>try{if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
+  <script src="/assets/js/site.js" defer></script>
+  <title>A search agent needs a ledger, not a longer transcript — Yidan Huang</title>
+</head>
+<body class="article-page" data-current="writing">
+  <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳转到正文</span></a>
+  <header class="site-header" id="top">
+    <div class="header-inner wrap">
+      <a class="brand" href="/" aria-label="Yidan Huang — Home">
+        <span class="brand-mark" aria-hidden="true">Y<span>·</span>H</span>
+        <span class="brand-copy">YIDAN HUANG <small>RESEARCH &amp; ENGINEERING</small></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="/" data-nav="home"><span data-lang="en">Home</span><span data-lang="zh">首页</span></a>
+        <a href="/work/" data-nav="work"><span data-lang="en">Work</span><span data-lang="zh">项目</span></a>
+        <a href="/writing/" data-nav="writing"><span data-lang="en">Writing</span><span data-lang="zh">写作</span></a>
+        <a href="/about/" data-nav="about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
+        <a href="/cv/" data-nav="cv"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
+        <a class="nav-contact" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span><span aria-hidden="true"> ↗</span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <article class="article-shell">
+      <header class="article-header wrap-narrow">
+        <a class="back-link" href="/writing/"><span aria-hidden="true">←</span> <span data-lang="en">All writing</span><span data-lang="zh">返回写作</span></a>
+        <p class="eyebrow"><span class="eyebrow-dot"></span>RESEARCH NOTE <span class="article-divider">/</span> SEP 2026</p>
+        <h1><span data-lang="en">A search agent needs a ledger, not a longer transcript.</span><span data-lang="zh">搜索智能体需要一本账，而非更长的对话。</span></h1>
+        <p class="article-deck"><span data-lang="en">A useful memory is a compact, sourced account of what has been learned, what remains uncertain, and what to check next.</span><span data-lang="zh">有用的记忆，是一份简洁且可追溯的记录：已经确认什么、还存疑什么、下一步该核对什么。</span></p>
+        <div class="article-byline"><span>YIDAN HUANG / 黄一丹</span><span>5 MIN READ</span></div>
+      </header>
+      <div class="article-banner banner-state" aria-hidden="true"><span>SOURCE</span><i></i><span>STATE</span><i></i><span>DECISION</span></div>
+      <div class="article-body wrap-narrow">
+        <p><span data-lang="en">A long search produces a lot of text, but text is not the same as memory. The agent may have already found a decisive fact twenty actions ago. Once that fact falls outside the active window, it can repeat the search, forget a constraint, or accept a candidate it had previously ruled out.</span><span data-lang="zh">长程搜索会产生大量文本，但文本不等于记忆。智能体可能在二十个动作前就找到了关键事实；当这段信息离开当前窗口，它又会重复检索、遗忘约束，甚至重新接受早已排除的候选。</span></p>
+        <p><span data-lang="en">The solution is not simply to keep every token in view. The agent needs a smaller object that says what the task currently knows. In ClueFlow, that object is a persistent state with evidence records and candidate records.</span><span data-lang="zh">解决办法并非简单地让所有 token 永远留在视野里。智能体需要一个更小的对象，说明任务目前已经知道什么。在 ClueFlow 中，这个对象由持久的证据记录与候选记录构成。</span></p>
+
+        <h2><span data-lang="en">State is an accountable claim</span><span data-lang="zh">状态是一种需要负责的判断</span></h2>
+        <p><span data-lang="en">An evidence record should say more than “I saw this.” It should identify the source and capture a fact in a form that can be added, revised, or discarded. A candidate record has a different job: it connects a possible answer to supporting evidence, missing requirements, and contradictions.</span><span data-lang="zh">一条证据记录不能只说“我看到了这个”。它需要标明来源，以可新增、修订或废弃的形式保存事实。候选记录承担另一项职责：把可能的答案与支持证据、尚缺的条件和已有矛盾连接起来。</span></p>
+        <p><span data-lang="en">The separation matters. Evidence is about what a source supports; a candidate is about what the current evidence allows the agent to conclude. Mixing the two makes it harder to see whether a wrong final answer came from bad retrieval, a bad state update, or a bad final decision.</span><span data-lang="zh">两者分离很重要。证据关乎来源支持什么，候选关乎当前证据允许智能体得出什么结论。混在一起，就难以判断错误答案究竟源自检索、状态更新，还是最终决策。</span></p>
+
+        <aside class="article-pullquote"><span data-lang="en">A memory entry is useful when another step can check where it came from and what it changes.</span><span data-lang="zh">一条记忆真正有用，是因为下一步能检查它从何而来、改变了什么。</span></aside>
+
+        <h2><span data-lang="en">From a browser action to a learning signal</span><span data-lang="zh">从浏览动作到训练信号</span></h2>
+        <p><span data-lang="en">A provenance chain connects the source action, the state update, and the final conclusion. This gives the agent an operational discipline during inference: when a candidate is nearly ready, it can see exactly which requirement remains unresolved. It also gives training a finer unit of analysis than the terminal reward.</span><span data-lang="zh">来源链把浏览动作、状态更新和最终结论连起来。这让智能体在推理时更有章法：候选即将完成时，能看清还有哪项条件未核实。它也让训练拥有比终局奖励更细的分析单位。</span></p>
+        <p><span data-lang="en">A run can fail overall and still contain a good source discovery or a correct state update. Preserving those steps helps training reward the parts of a trajectory worth repeating, while keeping the final outcome as a separate signal. That distinction is central to ClueFlow's hybrid supervision and turn-level credit design.</span><span data-lang="zh">一次运行整体失败，也可能包含正确的来源发现或状态更新。保留这些局部正确动作，有助于训练重复值得重复的部分，同时让最终结果保持为独立信号。这是 ClueFlow 混合监督与逐轮信用设计的核心区分。</span></p>
+        <p><span data-lang="en">The broader lesson is that agent memory is part of the policy. It changes what the model can see, what it can verify, and which decisions can later be explained.</span><span data-lang="zh">更一般的启示是：智能体记忆本身就是策略的一部分。它决定模型能看见什么、能核实什么，以及哪些决策最终能够被解释。</span></p>
+      </div>
+      <footer class="article-end wrap-narrow"><div><span>RELATED WORK</span><a href="/work/#clueflow">ClueFlow ↗</a></div><div><span>NEXT NOTE</span><a href="/writing/training-signals/"><span data-lang="en">The data contract is part of the model</span><span data-lang="zh">数据契约也是模型的一部分</span> ↗</a></div></footer>
+    </article>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">LET'S CONNECT</span><span data-lang="zh">保持联系</span></p>
+          <h2><span data-lang="en">Good work starts<br>with a good question.</span><span data-lang="zh">好的工作，始于<br>一个好的问题。</span></h2>
+        </div>
+        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email Yidan Huang"><span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-id"><strong>YIDAN HUANG <span>黄一丹</span></strong><p><span data-lang="en">Foundation models · Agents · Evaluation</span><span data-lang="zh">基座模型 · 智能体 · 评测</span></p></div>
+        <div class="footer-links">
+          <a href="mailto:huangyidan2025@ia.ac.cn">Email</a>
+          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <p class="copyright">© <span id="year">2026</span> Yidan Huang</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

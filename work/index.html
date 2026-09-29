@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3f2ec">
+  <meta name="author" content="Yidan Huang">
+  <meta name="description" content="Selected research and engineering work across long-horizon agents, model post-training, and interactive evaluation.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Yidan Huang">
+  <meta property="og:title" content="Selected Work — Yidan Huang">
+  <meta property="og:description" content="Selected research and engineering work across long-horizon agents, model post-training, and interactive evaluation.">
+  <meta property="og:url" content="https://yidanhai.github.io/work/">
+  <meta property="og:image" content="https://yidanhai.github.io/assets/img/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://yidanhai.github.io/work/">
+  <link rel="alternate" type="application/rss+xml" title="Yidan Huang — Writing" href="/feed.xml">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script>try{if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
+  <script src="/assets/js/site.js" defer></script>
+  <title>Selected Work — Yidan Huang</title>
+</head>
+<body class="inner-page" data-current="work">
+  <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳转到正文</span></a>
+  <header class="site-header" id="top">
+    <div class="header-inner wrap">
+      <a class="brand" href="/" aria-label="Yidan Huang — Home">
+        <span class="brand-mark" aria-hidden="true">Y<span>·</span>H</span>
+        <span class="brand-copy">YIDAN HUANG <small>RESEARCH &amp; ENGINEERING</small></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="/" data-nav="home"><span data-lang="en">Home</span><span data-lang="zh">首页</span></a>
+        <a href="/work/" data-nav="work"><span data-lang="en">Work</span><span data-lang="zh">项目</span></a>
+        <a href="/writing/" data-nav="writing"><span data-lang="en">Writing</span><span data-lang="zh">写作</span></a>
+        <a href="/about/" data-nav="about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
+        <a href="/cv/" data-nav="cv"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
+        <a class="nav-contact" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span><span aria-hidden="true"> ↗</span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="page-hero wrap">
+      <p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">SELECTED WORK / 2024—2026</span><span data-lang="zh">代表工作 / 2024—2026</span></p>
+      <div class="page-hero-grid"><h1><span data-lang="en">Research is a chain of <em>decisions.</em></span><span data-lang="zh">研究，是一连串<em>可解释的决策。</em></span></h1><p><span data-lang="en">The work below follows one question: how can a model gather evidence, keep the right state, and learn from what actually happened?</span><span data-lang="zh">这些工作围绕同一个问题：模型如何找到证据、保留正确状态，并从真实执行过程里学习？</span></p></div>
+      <div class="page-hero-line"><span>01 / SEARCH</span><span>02 / TRAINING</span><span>03 / EVALUATION</span></div>
+    </section>
+
+    <section class="work-index wrap"><p class="eyebrow"><span data-lang="en">JUMP TO</span><span data-lang="zh">快速浏览</span></p><div><a href="#acts">ACTS ↗</a><a href="#clueflow">ClueFlow ↗</a><a href="#joyai">JoyAI-LLM Flash ↗</a><a href="#searchauditor">SearchAuditor ↗</a><a href="#svibench">SVI-Bench ↗</a><a href="#publications"><span data-lang="en">Publications ↗</span><span data-lang="zh">论文成果 ↗</span></a></div></section>
+
+    <section class="case-study case-acts" id="acts">
+      <div class="wrap">
+        <div class="case-top"><span>01 / LONG-HORIZON SEARCH</span><span>RESEARCH · 2026</span></div>
+        <div class="case-grid"><div class="case-title"><span class="case-overline">ACTS</span><h2><span data-lang="en">Design the path to evidence.</span><span data-lang="zh">先设计证据路径。</span></h2><div class="case-links"><a href="/writing/evidence-paths/"><span data-lang="en">Read the research note</span><span data-lang="zh">阅读研究手记</span> ↗</a></div></div><div class="case-body"><p class="case-lead"><span data-lang="en">A question can require several facts yet be solved by opening one page. For an agent, the path to those facts is the real learning problem.</span><span data-lang="zh">一道题可能需要多个事实，却只需打开一个页面就能答对。对搜索智能体而言，真正的训练对象是找到事实的过程。</span></p><div class="case-points"><div><span>01</span><p><span data-lang="en">Represent entity-level facts and document navigation as linked structures, with each fact tied to its source.</span><span data-lang="zh">将实体事实与文档导航连接起来，并保留每条事实的来源。</span></p></div><div><span>02</span><p><span data-lang="en">Shape questions around evidence that must be discovered through distinct search actions.</span><span data-lang="zh">围绕需要通过不同检索动作才能发现的证据设计问题。</span></p></div><div><span>03</span><p><span data-lang="en">Filter trajectories by the actions a teacher actually took, so training examples carry search behavior rather than only final answers.</span><span data-lang="zh">依据教师实际执行的取证动作筛选轨迹，让训练样本包含搜索行为，而不只是最终答案。</span></p></div></div><div class="case-tags"><span>Evidence provenance</span><span>Search data</span><span>Agent SFT</span></div></div></div>
+      </div>
+    </section>
+
+    <section class="case-study case-clueflow" id="clueflow">
+      <div class="wrap">
+        <div class="case-top"><span>02 / AGENT STATE</span><span>CO-FIRST AUTHOR · 2026</span></div>
+        <div class="case-grid"><div class="case-title"><span class="case-overline">ClueFlow</span><h2><span data-lang="en">Give the agent a working memory it can explain.</span><span data-lang="zh">让智能体拥有可解释的工作记忆。</span></h2><div class="case-links"><a href="/writing/persistent-state/"><span data-lang="en">Read the research note</span><span data-lang="zh">阅读研究手记</span> ↗</a></div></div><div class="case-body"><p class="case-lead"><span data-lang="en">Long searches bury useful facts in a growing conversation. ClueFlow separates the short-term dialogue window from persistent evidence and candidate state.</span><span data-lang="zh">长程搜索会把关键事实埋进越来越长的对话。ClueFlow 将短期对话窗口与持久的证据、候选状态分开。</span></p><div class="case-points"><div><span>01</span><p><span data-lang="en">Evidence records capture source-backed facts; candidate records track what is supported, missing, or contradicted.</span><span data-lang="zh">证据记录保存有来源的事实；候选记录追踪已满足、缺失和矛盾的约束。</span></p></div><div><span>02</span><p><span data-lang="en">Browser-action provenance connects what was seen to what entered state and what shaped the final answer.</span><span data-lang="zh">浏览动作的来源链连接“看到什么”“记住什么”和“最终如何作答”。</span></p></div><div><span>03</span><p><span data-lang="en">Hybrid SFT and turn-level credit allocation reuse valid research steps, including those inside unsuccessful runs.</span><span data-lang="zh">Hybrid SFT 与逐轮信用分配保留有效取证动作，包括失败轨迹中做对的部分。</span></p></div></div><div class="case-tags"><span>Persistent state</span><span>Hybrid SFT</span><span>Turn-level RL</span></div></div></div>
+      </div>
+    </section>
+
+    <section class="case-study case-joyai" id="joyai">
+      <div class="wrap">
+        <div class="case-top"><span>03 / FOUNDATION MODELS</span><span>TECHNICAL REPORT · 2026</span></div>
+        <div class="case-grid"><div class="case-title"><span class="case-overline">JoyAI-LLM Flash</span><h2><span data-lang="en">Make model training traceable.</span><span data-lang="zh">让模型训练有迹可循。</span></h2><div class="case-links"><a href="https://arxiv.org/abs/2604.03044" target="_blank" rel="noopener noreferrer"><span data-lang="en">Technical report</span><span data-lang="zh">技术报告</span> ↗</a></div></div><div class="case-body"><p class="case-lead"><span data-lang="en">I am a named author on the JoyAI-LLM Flash technical report and contributed to its open release. The model is a 48B-total-parameter MoE with roughly 2.7B active parameters.</span><span data-lang="zh">我是 JoyAI-LLM Flash 技术报告署名作者，并参与模型开源发布。该模型为总参数 48B、激活参数约 2.7B 的 MoE。</span></p><div class="case-points"><div><span>01</span><p><span data-lang="en">At JD Explore Academy, my post-training work spans long-context full-parameter SFT and preference optimization for tool-using models.</span><span data-lang="zh">在京东探索研究院，我参与长上下文全参数 SFT、偏好优化等后训练工作。</span></p></div><div><span>02</span><p><span data-lang="en">I focus on the contracts that connect raw conversations, supervision masks, packed sequences, checkpoints, and agent evaluations.</span><span data-lang="zh">我重点核对原始对话、监督掩码、序列打包、模型权重与智能体评测之间的契约。</span></p></div></div><div class="case-tags"><span>Post-training</span><span>Long context</span><span>Training systems</span></div></div></div>
+      </div>
+    </section>
+
+    <section class="case-study case-searchauditor" id="searchauditor">
+      <div class="wrap">
+        <div class="case-top"><span>04 / FAILURE ANALYSIS</span><span>THIRD AUTHOR · 2026</span></div>
+        <div class="case-grid"><div class="case-title"><span class="case-overline">SearchAuditor</span><h2><span data-lang="en">Find the first mistake that mattered.</span><span data-lang="zh">找到真正改变结果的第一处错误。</span></h2><div class="case-links"><a href="https://github.com/lzzzx666/SearchAuditor" target="_blank" rel="noopener noreferrer"><span data-lang="en">Explore the open-source project</span><span data-lang="zh">查看开源项目</span> ↗</a></div></div><div class="case-body"><p class="case-lead"><span data-lang="en">A failed search can contain dozens of plausible actions before a wrong answer appears. SearchAuditor traces the earliest consequential deviation and turns it into a concrete repair instruction.</span><span data-lang="zh">一次失败搜索可能包含数十个看似合理的动作。SearchAuditor 追踪最早产生实质影响的偏离，并给出可执行的修复建议。</span></p><div class="case-points"><div><span>01</span><p><span data-lang="en">Global review, backward constraint checking, and forward timeline tracing offer three complementary views of a run.</span><span data-lang="zh">全局审查、反向约束核对与正向时间线追踪，提供三种互补的轨迹视角。</span></p></div><div><span>02</span><p><span data-lang="en">Evidence-anchored adjudication ties each diagnosis to a specific message window and source.</span><span data-lang="zh">以证据锚定裁决，把每项诊断对应到具体消息窗口和来源。</span></p></div></div><div class="case-tags"><span>Trace auditing</span><span>Failure attribution</span><span>Open source</span></div></div></div>
+      </div>
+    </section>
+
+    <section class="case-study case-svibench" id="svibench">
+      <div class="wrap">
+        <div class="case-top"><span>05 / STREAMING INTERACTION</span><span>CO-FIRST AUTHOR · 2026</span></div>
+        <div class="case-grid"><div class="case-title"><span class="case-overline">SVI-Bench / InteractFlow</span><h2><span data-lang="en">Evaluate the moment, not only the answer.</span><span data-lang="zh">评估开口的时机，也评估回答。</span></h2><div class="case-links"><a href="https://yidanhai.github.io/SVIbench-project-page/" target="_blank" rel="noopener noreferrer"><span data-lang="en">Project page</span><span data-lang="zh">项目主页</span> ↗</a></div></div><div class="case-body"><p class="case-lead"><span data-lang="en">A streaming video assistant must decide when to speak, when to stay silent, and what to remember. SVI-Bench evaluates the interaction trajectory that people actually experience.</span><span data-lang="zh">流式视频助手需要判断何时开口、何时沉默、记住什么。SVI-Bench 评估人真正感受到的完整交互过程。</span></p><div class="case-points"><div><span>01</span><p><span data-lang="en">The benchmark covers 75 tasks across nine scenarios, with anchored criteria for timing, grounding, restraint, and continuity.</span><span data-lang="zh">基准覆盖 9 类场景中的 75 个任务，以锚定标准评估时机、依据、克制与连续性。</span></p></div><div><span>02</span><p><span data-lang="en">InteractFlow records and judges synchronized sessions, keeping the original events available for replay and re-evaluation.</span><span data-lang="zh">InteractFlow 同步录制与判分，并保留原始事件，支持复看和重判。</span></p></div></div><div class="case-tags"><span>Video agents</span><span>Benchmark design</span><span>Evaluation systems</span></div></div></div>
+      </div>
+    </section>
+
+    <section class="publications wrap" id="publications">
+      <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">PUBLICATIONS &amp; REPORTS</span><span data-lang="zh">论文与报告</span></p><h2><span data-lang="en">Work in print.</span><span data-lang="zh">已公开的研究成果。</span></h2></div><p><span data-lang="en">Peer-reviewed papers and public technical work. Ongoing research projects appear above.</span><span data-lang="zh">这里列出已公开的论文与技术报告；进行中的研究项目见上方。</span></p></div>
+      <div class="publication-list">
+        <a href="https://arxiv.org/abs/2604.03044" target="_blank" rel="noopener noreferrer"><span class="pub-year">2026 / ARXIV</span><span class="pub-main"><strong>JoyAI-LLM Flash: Advancing Mid-Scale LLMs with Token Efficiency</strong><small>Aichen Cai et al., including Yidan Huang · Technical report</small></span><span class="pub-arrow" aria-hidden="true">↗</span></a>
+        <a href="https://doi.org/10.3390/foods13152313" target="_blank" rel="noopener noreferrer"><span class="pub-year">2024 / FOODS</span><span class="pub-main"><strong>Robust Detection of Cracked Eggs Using a Multi-Domain Training Method for Practical Egg Production</strong><small>Yuxuan Cheng, Yidan Huang, Jingjing Zhang, Xuehong Zhang, Qiaohua Wang, Wei Fan</small></span><span class="pub-arrow" aria-hidden="true">↗</span></a>
+        <a href="https://doi.org/10.1109/ICCEA62105.2024.10604113" target="_blank" rel="noopener noreferrer"><span class="pub-year">2024 / ICCEA</span><span class="pub-main"><strong>A Study of a Photovoltaic Power Prediction Method Combining BiLSTM and GWO</strong><small>Xiaokang Gui, Lewen Tan, Yidan Huang · Conference paper</small></span><span class="pub-arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">LET'S CONNECT</span><span data-lang="zh">保持联系</span></p>
+          <h2><span data-lang="en">Good work starts<br>with a good question.</span><span data-lang="zh">好的工作，始于<br>一个好的问题。</span></h2>
+        </div>
+        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email Yidan Huang"><span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-id"><strong>YIDAN HUANG <span>黄一丹</span></strong><p><span data-lang="en">Foundation models · Agents · Evaluation</span><span data-lang="zh">基座模型 · 智能体 · 评测</span></p></div>
+        <div class="footer-links">
+          <a href="mailto:huangyidan2025@ia.ac.cn">Email</a>
+          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <p class="copyright">© <span id="year">2026</span> Yidan Huang</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3f2ec">
+  <meta name="author" content="Yidan Huang">
+  <meta name="description" content="Field notes on evidence-grounded search, persistent agent state, and reliable model post-training.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Yidan Huang">
+  <meta property="og:title" content="Writing — Yidan Huang">
+  <meta property="og:description" content="Field notes on evidence-grounded search, persistent agent state, and reliable model post-training.">
+  <meta property="og:url" content="https://yidanhai.github.io/writing/">
+  <meta property="og:image" content="https://yidanhai.github.io/assets/img/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://yidanhai.github.io/writing/">
+  <link rel="alternate" type="application/rss+xml" title="Yidan Huang — Writing" href="/feed.xml">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script>try{if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
+  <script src="/assets/js/site.js" defer></script>
+  <title>Writing — Yidan Huang</title>
+</head>
+<body class="inner-page" data-current="writing">
+  <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳转到正文</span></a>
+  <header class="site-header" id="top">
+    <div class="header-inner wrap">
+      <a class="brand" href="/" aria-label="Yidan Huang — Home">
+        <span class="brand-mark" aria-hidden="true">Y<span>·</span>H</span>
+        <span class="brand-copy">YIDAN HUANG <small>RESEARCH &amp; ENGINEERING</small></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="/" data-nav="home"><span data-lang="en">Home</span><span data-lang="zh">首页</span></a>
+        <a href="/work/" data-nav="work"><span data-lang="en">Work</span><span data-lang="zh">项目</span></a>
+        <a href="/writing/" data-nav="writing"><span data-lang="en">Writing</span><span data-lang="zh">写作</span></a>
+        <a href="/about/" data-nav="about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
+        <a href="/cv/" data-nav="cv"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
+        <a class="nav-contact" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span><span aria-hidden="true"> ↗</span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="page-hero wrap">
+      <p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">WRITING / FIELD NOTES</span><span data-lang="zh">写作 / 研究手记</span></p>
+      <div class="page-hero-grid"><h1><span data-lang="en">A place to think <em>in public.</em></span><span data-lang="zh">把思考写出来，<em>供人检验。</em></span></h1><p><span data-lang="en">Short, concrete notes from building agents and training systems. These essays explain the design questions behind the work.</span><span data-lang="zh">来自智能体与训练系统实践的短文，记录方法背后的真实设计问题。</span></p></div>
+      <div class="page-hero-line"><span>IDEAS</span><span>METHODS</span><span>ENGINEERING</span></div>
+    </section>
+    <section class="writing-collection wrap">
+      <div class="writing-collection-head"><span><span data-lang="en">ALL NOTES</span><span data-lang="zh">全部文章</span></span><span>03 / 2026</span></div>
+      <a class="writing-card" href="/writing/evidence-paths/">
+        <div class="writing-card-index">01 <span>RESEARCH NOTE</span></div>
+        <div class="writing-card-body"><h2><span data-lang="en">A hard question is not necessarily a hard search</span><span data-lang="zh">难题，不一定需要难搜索</span></h2><p><span data-lang="en">Multi-hop questions can be solved with one search. What matters for agent training is the path a model must take to find the evidence.</span><span data-lang="zh">多跳问题也可能一次检索就得到答案。训练搜索智能体时，更重要的是模型找到证据的路径。</span></p><div class="writing-card-meta"><span>SEARCH AGENTS</span><span>SEP 2026</span></div></div><span class="writing-card-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="writing-card" href="/writing/persistent-state/">
+        <div class="writing-card-index">02 <span>RESEARCH NOTE</span></div>
+        <div class="writing-card-body"><h2><span data-lang="en">A search agent needs a ledger, not a longer transcript</span><span data-lang="zh">搜索智能体需要一本账，而非更长的对话</span></h2><p><span data-lang="en">A persistent record of evidence, candidates, and missing constraints helps the agent carry useful state through a long run.</span><span data-lang="zh">持久记录证据、候选与缺失约束，才能让智能体在长程任务里带着有效状态前进。</span></p><div class="writing-card-meta"><span>AGENT STATE</span><span>SEP 2026</span></div></div><span class="writing-card-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="writing-card" href="/writing/training-signals/">
+        <div class="writing-card-index">03 <span>ENGINEERING NOTE</span></div>
+        <div class="writing-card-body"><h2><span data-lang="en">The data contract is part of the model</span><span data-lang="zh">数据契约，也是模型的一部分</span></h2><p><span data-lang="en">Supervision masks, packed sequences, tool turns, and checkpoint lineage decide which behavior the model can actually learn.</span><span data-lang="zh">监督掩码、序列打包、工具轮次和模型权重血缘，决定模型究竟学到了什么。</span></p><div class="writing-card-meta"><span>POST-TRAINING</span><span>SEP 2026</span></div></div><span class="writing-card-arrow" aria-hidden="true">↗</span>
+      </a>
+      <div class="rss-callout"><span><span data-lang="en">Prefer a reader?</span><span data-lang="zh">习惯用阅读器？</span></span><a href="/feed.xml"><span data-lang="en">Subscribe by RSS</span><span data-lang="zh">订阅 RSS</span> ↗</a></div>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">LET'S CONNECT</span><span data-lang="zh">保持联系</span></p>
+          <h2><span data-lang="en">Good work starts<br>with a good question.</span><span data-lang="zh">好的工作，始于<br>一个好的问题。</span></h2>
+        </div>
+        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email Yidan Huang"><span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-id"><strong>YIDAN HUANG <span>黄一丹</span></strong><p><span data-lang="en">Foundation models · Agents · Evaluation</span><span data-lang="zh">基座模型 · 智能体 · 评测</span></p></div>
+        <div class="footer-links">
+          <a href="mailto:huangyidan2025@ia.ac.cn">Email</a>
+          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <p class="copyright">© <span id="year">2026</span> Yidan Huang</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

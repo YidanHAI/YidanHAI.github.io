@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3f2ec">
+  <meta name="author" content="Yidan Huang">
+  <meta name="description" content="Why masks, packing, tool turns, and evaluation lineage decide what an agent really learns.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Yidan Huang">
+  <meta property="og:title" content="The data contract is part of the model — Yidan Huang">
+  <meta property="og:description" content="Why masks, packing, tool turns, and evaluation lineage decide what an agent really learns.">
+  <meta property="og:url" content="https://yidanhai.github.io/writing/training-signals/">
+  <meta property="og:image" content="https://yidanhai.github.io/assets/img/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://yidanhai.github.io/writing/training-signals/">
+  <link rel="alternate" type="application/rss+xml" title="Yidan Huang — Writing" href="/feed.xml">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script>try{if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
+  <script src="/assets/js/site.js" defer></script>
+  <title>The data contract is part of the model — Yidan Huang</title>
+</head>
+<body class="article-page" data-current="writing">
+  <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳转到正文</span></a>
+  <header class="site-header" id="top">
+    <div class="header-inner wrap">
+      <a class="brand" href="/" aria-label="Yidan Huang — Home">
+        <span class="brand-mark" aria-hidden="true">Y<span>·</span>H</span>
+        <span class="brand-copy">YIDAN HUANG <small>RESEARCH &amp; ENGINEERING</small></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="/" data-nav="home"><span data-lang="en">Home</span><span data-lang="zh">首页</span></a>
+        <a href="/work/" data-nav="work"><span data-lang="en">Work</span><span data-lang="zh">项目</span></a>
+        <a href="/writing/" data-nav="writing"><span data-lang="en">Writing</span><span data-lang="zh">写作</span></a>
+        <a href="/about/" data-nav="about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
+        <a href="/cv/" data-nav="cv"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
+        <a class="nav-contact" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span><span aria-hidden="true"> ↗</span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <article class="article-shell">
+      <header class="article-header wrap-narrow">
+        <a class="back-link" href="/writing/"><span aria-hidden="true">←</span> <span data-lang="en">All writing</span><span data-lang="zh">返回写作</span></a>
+        <p class="eyebrow"><span class="eyebrow-dot"></span>ENGINEERING NOTE <span class="article-divider">/</span> SEP 2026</p>
+        <h1><span data-lang="en">The data contract is part of the model.</span><span data-lang="zh">数据契约，也是模型的一部分。</span></h1>
+        <p class="article-deck"><span data-lang="en">A training run can finish cleanly while teaching the wrong behavior. The difference often lives in masks, message boundaries, and provenance.</span><span data-lang="zh">训练作业可以顺利结束，却仍然教会模型错误的行为。区别常藏在掩码、消息边界与数据血缘里。</span></p>
+        <div class="article-byline"><span>YIDAN HUANG / 黄一丹</span><span>5 MIN READ</span></div>
+      </header>
+      <div class="article-banner banner-training" aria-hidden="true"><span>RAW TRACE</span><i></i><span>LABELS</span><i></i><span>WEIGHTS</span><i></i><span>BEHAVIOR</span></div>
+      <div class="article-body wrap-narrow">
+        <p><span data-lang="en">When a model learns from a tool-using conversation, “one example” is not a simple text string. It is a sequence of roles, tool calls, observations, hidden and visible reasoning, final answers, and choices about which tokens receive loss. Every conversion step expresses an assumption about the behavior we want to reinforce.</span><span data-lang="zh">当模型从工具使用对话中学习时，“一个样本”远不是一段简单文本。它包含角色、工具调用、观察结果、显式与隐式推理、最终回答，以及哪些 token 承担 loss 的选择。每一步转换都在表达我们希望强化哪种行为。</span></p>
+        <p><span data-lang="en">That is why I treat the data contract as part of the model. A correct-looking JSON file is not enough. The contract extends from the original trajectory through template encoding, supervision masks, packed sequences, the loaded checkpoint, and the agent run used to evaluate it.</span><span data-lang="zh">因此，我把数据契约视作模型的一部分。格式正确的 JSON 文件还不够；契约必须贯穿原始轨迹、模板编码、监督掩码、打包序列、实际加载的权重，以及最终用于评测的智能体运行。</span></p>
+
+        <h2><span data-lang="en">Loss masks choose the lesson</span><span data-lang="zh">监督掩码决定课程内容</span></h2>
+        <p><span data-lang="en">Suppose a trajectory contains several assistant turns, but only some are intended to teach a deliberate tool decision. Flattening the entire trace into one supervised span may reward a turn that merely inherited context, or a no-thinking action that was meant to be background. Conversely, dropping the earlier turns entirely may remove the history needed to make the supervised decision intelligible.</span><span data-lang="zh">假设一条轨迹包含多个 assistant 轮次，其中只有部分轮次用于学习审慎的工具决策。把整条轨迹铺成一段监督区间，可能强化本来只应作为上下文的轮次，甚至把无思考动作当成正例；但完全删去早期轮次，又会丢掉理解当前决策所需的历史。</span></p>
+        <p><span data-lang="en">A useful split keeps the previous messages as context while making the intended decision turn the supervised target. The invariant is concrete: every turn meant to teach the behavior should receive loss exactly where intended, and no unrelated turn should silently inherit it.</span><span data-lang="zh">有效的切分方式应保留历史消息作为上下文，只让目标决策轮次承担监督。关键不变量很具体：每个应被学习的动作都在预期位置承担 loss，其他轮次不会悄悄继承监督。</span></p>
+
+        <aside class="article-pullquote"><span data-lang="en">The model learns the tokens that carry loss, in the context the template actually gives them.</span><span data-lang="zh">模型学习的是实际承担 loss 的 token，以及模板真正赋予它们的上下文。</span></aside>
+
+        <h2><span data-lang="en">The run needs a traceable identity</span><span data-lang="zh">训练运行需要可追溯的身份</span></h2>
+        <p><span data-lang="en">Long-context packing adds another layer. A packed sequence may cross several original examples; a truncation rule can remove the turn we intended to supervise; a tool response can dominate token counts without being the action we want to optimize. I check the encoded sample, not only the source record.</span><span data-lang="zh">长上下文打包又添了一层复杂性。一段打包序列可能跨越多个原始样本；截断规则可能删掉本来要监督的轮次；工具返回可能占据大多数 token，却不是我们要优化的动作。因此我会检查编码后的样本，而不仅是源文件。</span></p>
+        <p><span data-lang="en">Finally, an evaluation number belongs to a particular checkpoint, prompt, tool protocol, context budget, and judge. When those links are explicit, a result can guide the next training decision. When they are missing, even a strong score says little about what changed.</span><span data-lang="zh">最后，评测数字总属于某个具体的权重、提示词、工具协议、上下文预算与判分器。把这些连接明确下来，结果才能指导下一次训练；连接一旦缺失，再漂亮的分数也难以说明究竟发生了什么。</span></p>
+        <p><span data-lang="en">The practical habit is to follow one example all the way through the system. From raw messages to encoded tokens, from loss positions to saved weights, and from those weights to an observed agent trace. That single chain often exposes problems a dashboard cannot.</span><span data-lang="zh">最实用的习惯，是沿系统完整追踪一个样本：从原始消息到编码 token，从 loss 位置到保存的权重，再从权重到真实的智能体轨迹。这样一条链，经常能暴露仪表盘看不到的问题。</span></p>
+      </div>
+      <footer class="article-end wrap-narrow"><div><span>RELATED WORK</span><a href="/work/#joyai"><span data-lang="en">Model post-training</span><span data-lang="zh">模型后训练</span> ↗</a></div><div><span>MORE WRITING</span><a href="/writing/"><span data-lang="en">Browse all notes</span><span data-lang="zh">阅读全部文章</span> ↗</a></div></footer>
+    </article>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">LET'S CONNECT</span><span data-lang="zh">保持联系</span></p>
+          <h2><span data-lang="en">Good work starts<br>with a good question.</span><span data-lang="zh">好的工作，始于<br>一个好的问题。</span></h2>
+        </div>
+        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email Yidan Huang"><span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-id"><strong>YIDAN HUANG <span>黄一丹</span></strong><p><span data-lang="en">Foundation models · Agents · Evaluation</span><span data-lang="zh">基座模型 · 智能体 · 评测</span></p></div>
+        <div class="footer-links">
+          <a href="mailto:huangyidan2025@ia.ac.cn">Email</a>
+          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <p class="copyright">© <span id="year">2026</span> Yidan Huang</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

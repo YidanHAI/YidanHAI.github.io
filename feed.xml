@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>Yidan Huang — Writing</title>
+    <link>https://yidanhai.github.io/writing/</link>
+    <description>Research notes on agents, evidence, and post-training.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 29 Sep 2026 08:00:00 +0000</lastBuildDate>
+    <item>
+      <title>A hard question is not necessarily a hard search</title>
+      <link>https://yidanhai.github.io/writing/evidence-paths/</link>
+      <guid>https://yidanhai.github.io/writing/evidence-paths/</guid>
+      <description>Why answer complexity alone does not teach a search agent to gather evidence step by step.</description>
+      <pubDate>Tue, 29 Sep 2026 08:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>A search agent needs a ledger, not a longer transcript</title>
+      <link>https://yidanhai.github.io/writing/persistent-state/</link>
+      <guid>https://yidanhai.github.io/writing/persistent-state/</guid>
+      <description>Persistent evidence and candidate state make long-horizon decisions traceable.</description>
+      <pubDate>Tue, 29 Sep 2026 08:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>The data contract is part of the model</title>
+      <link>https://yidanhai.github.io/writing/training-signals/</link>
+      <guid>https://yidanhai.github.io/writing/training-signals/</guid>
+      <description>Masks, packing, tool turns, and evaluation lineage shape what an agent learns.</description>
+      <pubDate>Tue, 29 Sep 2026 08:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

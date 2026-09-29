@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3f2ec">
+  <meta name="author" content="Yidan Huang">
+  <meta name="description" content="Why answer complexity alone does not teach a search agent to gather evidence step by step.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Yidan Huang">
+  <meta property="og:title" content="A hard question is not necessarily a hard search — Yidan Huang">
+  <meta property="og:description" content="Why answer complexity alone does not teach a search agent to gather evidence step by step.">
+  <meta property="og:url" content="https://yidanhai.github.io/writing/evidence-paths/">
+  <meta property="og:image" content="https://yidanhai.github.io/assets/img/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://yidanhai.github.io/writing/evidence-paths/">
+  <link rel="alternate" type="application/rss+xml" title="Yidan Huang — Writing" href="/feed.xml">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script>try{if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
+  <script src="/assets/js/site.js" defer></script>
+  <title>A hard question is not necessarily a hard search — Yidan Huang</title>
+</head>
+<body class="article-page" data-current="writing">
+  <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳转到正文</span></a>
+  <header class="site-header" id="top">
+    <div class="header-inner wrap">
+      <a class="brand" href="/" aria-label="Yidan Huang — Home">
+        <span class="brand-mark" aria-hidden="true">Y<span>·</span>H</span>
+        <span class="brand-copy">YIDAN HUANG <small>RESEARCH &amp; ENGINEERING</small></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="/" data-nav="home"><span data-lang="en">Home</span><span data-lang="zh">首页</span></a>
+        <a href="/work/" data-nav="work"><span data-lang="en">Work</span><span data-lang="zh">项目</span></a>
+        <a href="/writing/" data-nav="writing"><span data-lang="en">Writing</span><span data-lang="zh">写作</span></a>
+        <a href="/about/" data-nav="about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
+        <a href="/cv/" data-nav="cv"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
+        <a class="nav-contact" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span><span aria-hidden="true"> ↗</span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <article class="article-shell">
+      <header class="article-header wrap-narrow">
+        <a class="back-link" href="/writing/"><span aria-hidden="true">←</span> <span data-lang="en">All writing</span><span data-lang="zh">返回写作</span></a>
+        <p class="eyebrow"><span class="eyebrow-dot"></span>RESEARCH NOTE <span class="article-divider">/</span> SEP 2026</p>
+        <h1><span data-lang="en">A hard question is not necessarily a hard search.</span><span data-lang="zh">难题，不一定需要难搜索。</span></h1>
+        <p class="article-deck"><span data-lang="en">Multi-hop reasoning and multi-step evidence gathering are different skills. A search agent's training data should make that difference visible.</span><span data-lang="zh">多跳推理与多步取证是两种不同能力。搜索智能体的训练数据，应该让这一区别清晰可见。</span></p>
+        <div class="article-byline"><span>YIDAN HUANG / 黄一丹</span><span>5 MIN READ</span></div>
+      </header>
+      <div class="article-banner banner-evidence" aria-hidden="true"><span>QUESTION</span><i></i><span>SEARCH</span><i></i><span>EVIDENCE</span><i></i><span>ANSWER</span></div>
+      <div class="article-body wrap-narrow">
+        <p><span data-lang="en">A question can have a complicated answer and still be easy to search. Imagine that the answer requires three facts: a person's appointment date, the institution they joined, and the name the institution used at the time. If one well-ranked biography contains all three, an agent may open one page and finish. The reasoning is multi-hop; the retrieval is not.</span><span data-lang="zh">一道题的答案可以很复杂，搜索过程却很简单。假设答案需要三个事实：某人的任职日期、所加入的机构，以及该机构当时的名称。如果排名靠前的一篇传记恰好包含全部信息，智能体只需打开一次页面就能完成。推理是多跳的，检索却不是。</span></p>
+        <p><span data-lang="en">That distinction matters for supervised agent training. The model learns from the trajectory it sees. A task that looks difficult on paper cannot teach successive search decisions if the teacher solved it with a single shortcut.</span><span data-lang="zh">这一区别直接影响智能体的监督训练。模型学到的是轨迹中真实出现的动作。若教师通过一次捷径检索解题，即使题面看起来很难，也教不会模型连续搜索的决策。</span></p>
+
+        <h2><span data-lang="en">Design the discovery path</span><span data-lang="zh">设计证据的发现路径</span></h2>
+        <p><span data-lang="en">In ACTS, we treat answer construction and evidence discovery as connected but distinct design problems. One structure records entity facts and their source pages. Another records how a search action can move from one page, through a clue, to a new source. The connection lets us ask a more useful question: what would the agent need to do to discover the next fact?</span><span data-lang="zh">在 ACTS 中，我们把答案构造与证据发现视作相关但不同的设计问题。一层结构记录实体事实及其来源页面，另一层记录搜索动作如何从当前页面，经由线索到达新来源。连接这两层后，便能问出更有用的问题：智能体需要做什么，才能发现下一条事实？</span></p>
+        <p><span data-lang="en">Source provenance is essential here. A fact that merely appears near another fact in a document is not automatically a good bridge. The clue should be grounded in a source the agent can reach, and the next page should support the fact it is used to introduce. Otherwise the generated path is tidy on paper but brittle in a real browser.</span><span data-lang="zh">来源可追溯性在这里至关重要。两个事实碰巧出现在同一文档，不意味着它们天然构成好的桥接线索。线索应落在智能体能够访问的来源上，下一页面也应真正支持它引出的事实。否则纸面上的路径很漂亮，在真实浏览器里却站不住脚。</span></p>
+
+        <aside class="article-pullquote"><span data-lang="en">The unit of difficulty is not only the answer. It is the sequence of evidence an agent must uncover.</span><span data-lang="zh">难度的单位不只是答案，也包括智能体必须逐步发现的证据序列。</span></aside>
+
+        <h2><span data-lang="en">Train on observed behavior</span><span data-lang="zh">从真实行为中学习</span></h2>
+        <p><span data-lang="en">A designed path is still a proposal. The teacher's tool calls reveal whether that path produced the intended behavior. Did it search again? Did it open a new source? Was the final answer supported? These observations are stronger training criteria than counting the number of facts in the answer alone.</span><span data-lang="zh">设计出的路径终究只是一个设想。教师实际调用工具的记录，才能说明路径是否诱发了预期行为：它有没有继续搜索？有没有打开新的来源？最终答案是否有证据支持？这些观察比单纯统计答案中的事实数量更适合作为训练筛选条件。</span></p>
+        <p><span data-lang="en">This also changes how I read a dataset. I look for the action that each example is supposed to teach, then verify that the action appears in the trace and contributes to the outcome. A good search example is a record of a useful discovery process, not just a difficult question with a correct answer attached.</span><span data-lang="zh">这也改变了我审视数据集的方式。我先问每个样本希望教会模型什么动作，再检查这个动作是否真的出现在轨迹中、是否对结果有贡献。好的搜索样本记录的是有用的发现过程，而不只是附着正确答案的难题。</span></p>
+      </div>
+      <footer class="article-end wrap-narrow"><div><span>RELATED WORK</span><a href="/work/#acts">ACTS ↗</a></div><div><span>NEXT NOTE</span><a href="/writing/persistent-state/"><span data-lang="en">A search agent needs a ledger</span><span data-lang="zh">搜索智能体需要一本账</span> ↗</a></div></footer>
+    </article>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">LET'S CONNECT</span><span data-lang="zh">保持联系</span></p>
+          <h2><span data-lang="en">Good work starts<br>with a good question.</span><span data-lang="zh">好的工作，始于<br>一个好的问题。</span></h2>
+        </div>
+        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email Yidan Huang"><span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-id"><strong>YIDAN HUANG <span>黄一丹</span></strong><p><span data-lang="en">Foundation models · Agents · Evaluation</span><span data-lang="zh">基座模型 · 智能体 · 评测</span></p></div>
+        <div class="footer-links">
+          <a href="mailto:huangyidan2025@ia.ac.cn">Email</a>
+          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <p class="copyright">© <span id="year">2026</span> Yidan Huang</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
