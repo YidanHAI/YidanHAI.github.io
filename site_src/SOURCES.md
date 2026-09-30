@@ -1,24 +1,35 @@
 # Content source notes
 
-The September 2026 site edition uses Yidan Huang's current CV and the
-accompanying fact sheet in the local `hyd_cv` project for identity, dates,
-education, roles, and high-level descriptions of ongoing work. Public-facing
-copy deliberately summarizes active research without presenting unpublished
-benchmark scores as established results.
+The September 2026 site edition uses Yidan Huang's CV materials and research
+manuscripts for identity, dates, roles, and method descriptions. On 30 September
+2026, Yidan confirmed the following submission status for the public site:
+
+| Venue and status | Research |
+| --- | --- |
+| Under review, ICLR 2027 | ACTS; CATER; SP-OPD; ClueFlow; SVI-Bench |
+| Under review, AAAI 2027 | TEAL; SearchAuditor |
+
+A submission is described as *under review*, never as accepted or published.
+The exact manuscript titles shown for ACTS, CATER, SP-OPD, SVI-Bench, and
+SearchAuditor come from their local paper drafts. ClueFlow and TEAL are listed
+by project name because a final submitted title was not established from the
+available materials. CATER and SP-OPD are anonymous manuscripts; the site does
+not upload their PDFs or infer author order. The SVI-Bench manuscript lists
+Yidan as an equal-contribution author. The SearchAuditor draft lists Yidan as
+third author. Earlier records confirm ClueFlow's co-first-author role.
 
 | Site topic | Public source |
 | --- | --- |
 | JoyAI-LLM Flash report, authorship and model specifications | [arXiv:2604.03044](https://arxiv.org/abs/2604.03044) |
 | SearchAuditor and its open-source status | [SearchAuditor repository](https://github.com/lzzzx666/SearchAuditor) |
-| SVI-Bench scope and InteractFlow | [SVI-Bench project page](https://yidanhai.github.io/SVIbench-project-page/) |
+| SVI-Bench scope, scoring protocol and InteractFlow | [SVI-Bench project page](https://yidanhai.github.io/SVIbench-project-page/) and [released pipeline](https://github.com/YidanHAI/VL-Interaction-interactflow) |
 | Foods 2024 paper | [DOI:10.3390/foods13152313](https://doi.org/10.3390/foods13152313) |
 | ICCEA 2024 paper | [DOI:10.1109/ICCEA62105.2024.10604113](https://doi.org/10.1109/ICCEA62105.2024.10604113) |
 
-ACTS and ClueFlow appear as ongoing research projects. The field notes explain
-their design questions without claims of acceptance or headline performance.
-
-The CrystalBind and TEAL descriptions draw on the local project brief
-`hyd_cv/简历_项目经历_CFO_Qwen.md`. They are presented as ongoing research, not
-accepted publications. The public copy explains the research questions,
-experimental controls, and method design without reporting manuscript-only
-performance figures or attributing an unconfirmed author position.
+The CATER and SP-OPD case studies and notes describe the questions and methods
+in the local anonymous manuscripts. The SVI-Bench copy describes the publicly
+released 75-item, nine-scenario, five-dimension protocol and its synchronized
+trace workflow. The CrystalBind and TEAL descriptions also draw on the local
+`hyd_cv/简历_项目经历_CFO_Qwen.md` project brief. No manuscript-only performance
+figures were added; that would require a separate audit of raw runs, metric
+aggregation, and baseline parity.

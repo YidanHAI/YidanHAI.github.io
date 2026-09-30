@@ -44,19 +44,19 @@ PAGES = (
     Page(
         "/", "home.html",
         "Yidan Huang — Research & Engineering",
-        "Yidan Huang researches generative models, multimodal learning, foundation-model post-training, and evidence-grounded agents.",
+        "Yidan Huang researches efficient reasoning, on-policy distillation, streaming-video evaluation, multimodal learning, and evidence-grounded agents.",
         "home", "home-page",
     ),
     Page(
         "/work/", "work.html",
         "Selected Work — Yidan Huang",
-        "Selected work on diffusion attribute binding, multimodal feature interfaces, foundation models, and long-horizon agents.",
+        "Selected research on reasoning efficiency, on-policy distillation, streaming interaction, multimodal interfaces, and search agents.",
         "work", "inner-page",
     ),
     Page(
         "/writing/", "writing.html",
         "Writing — Yidan Huang",
-        "Research notes on generative models, multimodal feature interfaces, agents, and model training.",
+        "Research notes on efficient reasoning, distillation, streaming-video evaluation, generative models, and agents.",
         "writing", "inner-page",
     ),
     Page(
@@ -90,15 +90,33 @@ PAGES = (
         "writing", "article-page", "article",
     ),
     Page(
+        "/writing/reasoning-budget/", "reasoning-budget.html",
+        "When should a model stop thinking? — Yidan Huang",
+        "How CATER routes correctness learning and concise self-distillation using the student’s current competence.",
+        "writing", "article-page", "article",
+    ),
+    Page(
+        "/writing/teacher-verifier-conflict/", "teacher-verifier-conflict.html",
+        "When the teacher disagrees with a correct answer — Yidan Huang",
+        "How SP-OPD uses verifier acceptance and KL projection to repair a distillation target.",
+        "writing", "article-page", "article",
+    ),
+    Page(
+        "/writing/streaming-interaction/", "streaming-interaction.html",
+        "The unit of video interaction is a trajectory — Yidan Huang",
+        "How SVI-Bench and InteractFlow evaluate speaking, silence, timing, and memory in streaming video.",
+        "writing", "article-page", "article",
+    ),
+    Page(
         "/about/", "about.html",
         "About — Yidan Huang",
-        "About Yidan Huang: researcher and engineer studying generative models, multimodal learning, and long-horizon agents.",
+        "About Yidan Huang: researcher and engineer studying efficient reasoning, on-policy distillation, multimodal systems, and agents.",
         "about", "inner-page",
     ),
     Page(
         "/cv/", "cv.html",
         "Curriculum Vitae — Yidan Huang",
-        "A concise public CV for Yidan Huang, covering research, engineering, publications, and education.",
+        "Yidan Huang’s public CV: research projects, manuscripts under review at ICLR and AAAI 2027, experience, and publications.",
         "cv", "inner-page cv-page",
     ),
     Page(
@@ -111,6 +129,15 @@ PAGES = (
 
 
 ARTICLES = (
+    ("/writing/reasoning-budget/", "When should a model stop thinking?",
+     "CATER routes reasoning compression by the student’s current competence.",
+     datetime(2026, 9, 30, 2, 30, tzinfo=timezone.utc)),
+    ("/writing/teacher-verifier-conflict/", "When the teacher disagrees with a correct answer",
+     "SP-OPD projects a teacher target to respect a verifier-accepted trajectory.",
+     datetime(2026, 9, 30, 2, 30, tzinfo=timezone.utc)),
+    ("/writing/streaming-interaction/", "The unit of video interaction is a trajectory",
+     "SVI-Bench evaluates when a streaming assistant speaks, stays silent, and remembers.",
+     datetime(2026, 9, 30, 2, 30, tzinfo=timezone.utc)),
     ("/writing/attribute-binding/", "When does a color become the car's?",
      "A counterfactual view of attribute assignment during diffusion sampling.",
      datetime(2026, 9, 29, 17, 0, tzinfo=timezone.utc)),

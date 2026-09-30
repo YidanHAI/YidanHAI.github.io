@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3f2ec">
+  <meta name="author" content="Yidan Huang">
+  <meta name="description" content="How CATER routes correctness learning and concise self-distillation using the student’s current competence.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Yidan Huang">
+  <meta property="og:title" content="When should a model stop thinking? — Yidan Huang">
+  <meta property="og:description" content="How CATER routes correctness learning and concise self-distillation using the student’s current competence.">
+  <meta property="og:url" content="https://yidanhai.github.io/writing/reasoning-budget/">
+  <meta property="og:image" content="https://yidanhai.github.io/assets/img/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://yidanhai.github.io/writing/reasoning-budget/">
+  <link rel="alternate" type="application/rss+xml" title="Yidan Huang — Writing" href="/feed.xml">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script>try{if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
+  <script src="/assets/js/site.js" defer></script>
+  <title>When should a model stop thinking? — Yidan Huang</title>
+</head>
+<body class="article-page" data-current="writing">
+  <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳转到正文</span></a>
+  <header class="site-header" id="top">
+    <div class="header-inner wrap">
+      <a class="brand" href="/" aria-label="Yidan Huang — Home">
+        <span class="brand-mark" aria-hidden="true">Y<span>·</span>H</span>
+        <span class="brand-copy">YIDAN HUANG <small>RESEARCH &amp; ENGINEERING</small></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="/" data-nav="home"><span data-lang="en">Home</span><span data-lang="zh">首页</span></a>
+        <a href="/work/" data-nav="work"><span data-lang="en">Work</span><span data-lang="zh">项目</span></a>
+        <a href="/writing/" data-nav="writing"><span data-lang="en">Writing</span><span data-lang="zh">写作</span></a>
+        <a href="/about/" data-nav="about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
+        <a href="/cv/" data-nav="cv"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
+        <a class="nav-contact" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span><span aria-hidden="true"> ↗</span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <article class="article-shell">
+      <header class="article-header wrap-narrow">
+        <a class="back-link" href="/writing/"><span aria-hidden="true">←</span> <span data-lang="en">All writing</span><span data-lang="zh">返回写作</span></a>
+        <p class="eyebrow"><span class="eyebrow-dot"></span>RESEARCH NOTE <span class="article-divider">/</span> <span data-lang="en">ICLR 2027 · UNDER REVIEW</span><span data-lang="zh">ICLR 2027 · 在审</span></p>
+        <h1><span data-lang="en">When should a model stop thinking?</span><span data-lang="zh">模型什么时候该少想一步？</span></h1>
+        <p class="article-deck"><span data-lang="en">Efficient reasoning is a question of timing: shorten a solution after the student can solve the problem reliably, and use correctness feedback while that capability is still forming.</span><span data-lang="zh">高效推理首先要判断时机：模型能稳定解出的问题适合压缩；能力仍在形成的问题，更需要正确性反馈。</span></p>
+        <div class="article-byline"><span>YIDAN HUANG / 黄一丹</span><span>3 MIN READ</span></div>
+      </header>
+      <div class="article-banner banner-reasoning" aria-hidden="true"><span>ROLLOUT</span><i></i><span>ROUTE</span><i></i><span>LEARN</span><i></i><span>RECHECK</span></div>
+      <div class="article-body wrap-narrow">
+        <p><span data-lang="en">A reasoning model can spend a long chain of thought on a question it already knows how to answer. Asking it to be shorter everywhere creates the opposite problem: on an unfamiliar question, those extra steps may be exactly what it needs. CATER starts by asking what the student can solve now.</span><span data-lang="zh">推理模型可能在熟悉的问题上反复展开长思维链。若对所有问题一律要求简短，陌生问题又可能失去必要的探索步骤。CATER 的起点是判断学生模型此刻能解出什么。</span></p>
+        <p><span data-lang="en">For each problem, the current student samples a group of fresh responses. A verifier marks which responses are correct. That pattern is the routing signal: all correct, mixed outcomes, or all failed. The category belongs to the current policy, so it can change as the student learns.</span><span data-lang="zh">每道题都由当前学生模型重新采样一组回答，再由验证器标记正确与否。全对、有对有错、全错三种结果决定训练信号。分类反映的是当前策略的能力，会随模型学习而变化。</span></p>
+
+        <h2><span data-lang="en">Match the signal to the bottleneck</span><span data-lang="zh">让训练信号匹配当前瓶颈</span></h2>
+        <p><span data-lang="en">All-correct groups receive concise on-policy self-distillation: a periodically refreshed self-teacher supplies token-level guidance under a brevity instruction. Mixed groups receive correctness-based reinforcement learning, using the successful and unsuccessful responses as a contrast. All-failed groups are temporarily deferred because that group has no successful trajectory to reinforce or safely compress.</span><span data-lang="zh">全对组接受简洁的 on-policy 自蒸馏：定期刷新的自教师在简短作答指令下提供逐 token 指导。有对有错的组通过正确性强化学习利用成败对照。全错组暂时搁置，因为它尚无可强化、可安全压缩的成功轨迹。</span></p>
+        <p><span data-lang="en">The routing is repeated on new student rollouts. A problem that was once all failed can enter the mixed group when successful reasoning appears, then enter the compression group when success becomes consistent. The training curriculum follows demonstrated competence rather than a fixed difficulty label.</span><span data-lang="zh">路由会随着新的学生采样不断重算。原本全错的问题，一旦出现成功轨迹就可以进入混合组；稳定解出后再进入压缩组。训练课程跟随已经表现出的能力，而不是固定难度标签。</span></p>
+
+        <aside class="article-pullquote"><span data-lang="en">Compression follows competence; the curriculum moves with the student.</span><span data-lang="zh">先形成能力，再压缩推理；课程随学生一起变化。</span></aside>
+
+        <h2><span data-lang="en">Measure both sides of efficiency</span><span data-lang="zh">同时衡量效率与正确性</span></h2>
+        <p><span data-lang="en">CATER separates the decision of where to compress from the question of how strongly to combine distillation and reinforcement learning. Its evaluation therefore has two essential axes: answer correctness and generated reasoning tokens. A shorter answer is useful when the model still solves the problem it was meant to solve.</span><span data-lang="zh">CATER 将“哪些题该压缩”与“蒸馏和强化学习如何平衡”分开设计。评估也必须同时看答案正确性和生成的推理 token：只有维持解题能力，缩短回答才有意义。</span></p>
+      </div>
+      <footer class="article-end wrap-narrow"><div><span>RELATED WORK</span><a href="/work/#cater">CATER ↗</a></div><div><span>NEXT NOTE</span><a href="/writing/teacher-verifier-conflict/"><span data-lang="en">When the teacher disagrees with a correct answer</span><span data-lang="zh">教师与正确解答意见相左时</span> ↗</a></div></footer>
+    </article>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">LET'S CONNECT</span><span data-lang="zh">保持联系</span></p>
+          <h2><span data-lang="en">Good work starts<br>with a good question.</span><span data-lang="zh">好的工作，始于<br>一个好的问题。</span></h2>
+        </div>
+        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email Yidan Huang"><span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-id"><strong>YIDAN HUANG <span>黄一丹</span></strong><p><span data-lang="en">Generative models · Multimodal learning · Agents</span><span data-lang="zh">生成模型 · 多模态学习 · 智能体</span></p></div>
+        <div class="footer-links">
+          <a href="mailto:huangyidan2025@ia.ac.cn">Email</a>
+          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <p class="copyright">© <span id="year">2026</span> Yidan Huang</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

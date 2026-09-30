@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3f2ec">
+  <meta name="author" content="Yidan Huang">
+  <meta name="description" content="How SP-OPD uses verifier acceptance and KL projection to repair a distillation target.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Yidan Huang">
+  <meta property="og:title" content="When the teacher disagrees with a correct answer — Yidan Huang">
+  <meta property="og:description" content="How SP-OPD uses verifier acceptance and KL projection to repair a distillation target.">
+  <meta property="og:url" content="https://yidanhai.github.io/writing/teacher-verifier-conflict/">
+  <meta property="og:image" content="https://yidanhai.github.io/assets/img/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://yidanhai.github.io/writing/teacher-verifier-conflict/">
+  <link rel="alternate" type="application/rss+xml" title="Yidan Huang — Writing" href="/feed.xml">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script>try{if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
+  <script src="/assets/js/site.js" defer></script>
+  <title>When the teacher disagrees with a correct answer — Yidan Huang</title>
+</head>
+<body class="article-page" data-current="writing">
+  <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳转到正文</span></a>
+  <header class="site-header" id="top">
+    <div class="header-inner wrap">
+      <a class="brand" href="/" aria-label="Yidan Huang — Home">
+        <span class="brand-mark" aria-hidden="true">Y<span>·</span>H</span>
+        <span class="brand-copy">YIDAN HUANG <small>RESEARCH &amp; ENGINEERING</small></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="/" data-nav="home"><span data-lang="en">Home</span><span data-lang="zh">首页</span></a>
+        <a href="/work/" data-nav="work"><span data-lang="en">Work</span><span data-lang="zh">项目</span></a>
+        <a href="/writing/" data-nav="writing"><span data-lang="en">Writing</span><span data-lang="zh">写作</span></a>
+        <a href="/about/" data-nav="about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
+        <a href="/cv/" data-nav="cv"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
+        <a class="nav-contact" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span><span aria-hidden="true"> ↗</span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <article class="article-shell">
+      <header class="article-header wrap-narrow">
+        <a class="back-link" href="/writing/"><span aria-hidden="true">←</span> <span data-lang="en">All writing</span><span data-lang="zh">返回写作</span></a>
+        <p class="eyebrow"><span class="eyebrow-dot"></span>RESEARCH NOTE <span class="article-divider">/</span> <span data-lang="en">ICLR 2027 · UNDER REVIEW</span><span data-lang="zh">ICLR 2027 · 在审</span></p>
+        <h1><span data-lang="en">When the teacher disagrees with a correct answer</span><span data-lang="zh">教师与正确解答意见相左时</span></h1>
+        <p class="article-deck"><span data-lang="en">A verifier can accept a student's solution while its distillation teacher assigns a sampled token low probability. SP-OPD makes those two signals consistent at the target distribution.</span><span data-lang="zh">验证器认定学生的解答正确，蒸馏教师却可能压低其中某个 token 的概率。SP-OPD 从目标分布入手，让两种监督信号一致。</span></p>
+        <div class="article-byline"><span>YIDAN HUANG / 黄一丹</span><span>3 MIN READ</span></div>
+      </header>
+      <div class="article-banner banner-distillation" aria-hidden="true"><span>STUDENT</span><i></i><span>VERIFY</span><i></i><span>PROJECT</span><i></i><span>LEARN</span></div>
+      <div class="article-body wrap-narrow">
+        <p><span data-lang="en">On-policy distillation asks a teacher to score the states that a student actually visits. In verifiable reasoning, each student response also receives an outcome label. These signals can conflict: a complete answer is correct, yet the teacher assigns one of its sampled tokens lower probability than the behavior policy that produced it.</span><span data-lang="zh">On-policy 蒸馏让教师评估学生实际到达的状态。在可验证推理中，每条学生回答还会得到结果标签。两种信号可能冲突：整条解答是正确的，但教师给其中一个采样 token 的概率低于生成它的行为策略。</span></p>
+        <p><span data-lang="en">At such a position, a standard teacher target gives that token a negative distillation advantage. An update can push against a verified solution. SP-OPD treats verifier acceptance as information about the target itself: on a correct trajectory, the sampled token must receive at least its behavior-policy probability.</span><span data-lang="zh">在这个位置，普通教师目标会给该 token 一个负的蒸馏优势，更新方向可能与已验证的正确解答相反。SP-OPD 把验证器的认可转成目标分布的约束：正确轨迹中的采样 token，目标概率不能低于其行为策略概率。</span></p>
+
+        <h2><span data-lang="en">Project the teacher onto a feasible target</span><span data-lang="zh">将教师分布投影到可行目标</span></h2>
+        <p><span data-lang="en">The method chooses the distribution closest to the teacher under KL divergence while satisfying that constraint. If the teacher already meets it, the target stays the same. At a conflict, projection lifts the sampled token to the constraint boundary and rescales the other tokens proportionally, preserving their relative probabilities.</span><span data-lang="zh">方法在满足约束的分布中，选择与教师分布 KL 距离最近的目标。教师原本满足约束时，目标保持不变；发生冲突时，投影只把采样 token 提到约束边界，并按比例重分配其余 token 的概率，保留它们之间的相对关系。</span></p>
+        <p><span data-lang="en">The outcome label applies to a whole response. It certifies the sampled correct trajectory, without naming an individual token responsible for an incorrect one. SP-OPD therefore applies the support constraint to correct trajectories and keeps the teacher target on incorrect trajectories.</span><span data-lang="zh">结果标签作用于整条回答。它确认采样轨迹正确，却不会指出错误回答究竟错在哪个 token。因此 SP-OPD 对正确轨迹施加支持约束，对错误轨迹沿用教师目标。</span></p>
+
+        <aside class="article-pullquote"><span data-lang="en">A verified trajectory should not be suppressed by its distillation target at the tokens it sampled.</span><span data-lang="zh">已验证的正确轨迹，不应在其采样 token 上被蒸馏目标压低。</span></aside>
+
+        <h2><span data-lang="en">Carry one target through both loss terms</span><span data-lang="zh">让两项损失使用同一目标</span></h2>
+        <p><span data-lang="en">SP-OPD uses the projected target in both the clipped reverse-KL advantage and the forward-KL term. This matters because fixing only a scalar advantage would leave the forward-KL target unchanged. Its response-balanced reduction also averages token losses within each response before averaging responses, matching the verifier's response-level label.</span><span data-lang="zh">SP-OPD 在截断的 reverse-KL 优势与 forward-KL 项中都使用投影后的目标。若只修正一个标量优势，forward-KL 仍会沿原教师分布更新。方法还先在每条回答内平均 token 损失、再平均回答，与验证器的整条回答标签保持一致。</span></p>
+      </div>
+      <footer class="article-end wrap-narrow"><div><span>RELATED WORK</span><a href="/work/#sp-opd">SP-OPD ↗</a></div><div><span>NEXT NOTE</span><a href="/writing/streaming-interaction/"><span data-lang="en">The unit of video interaction is a trajectory</span><span data-lang="zh">流式视频评测，该看整段交互</span> ↗</a></div></footer>
+    </article>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">LET'S CONNECT</span><span data-lang="zh">保持联系</span></p>
+          <h2><span data-lang="en">Good work starts<br>with a good question.</span><span data-lang="zh">好的工作，始于<br>一个好的问题。</span></h2>
+        </div>
+        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email Yidan Huang"><span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-id"><strong>YIDAN HUANG <span>黄一丹</span></strong><p><span data-lang="en">Generative models · Multimodal learning · Agents</span><span data-lang="zh">生成模型 · 多模态学习 · 智能体</span></p></div>
+        <div class="footer-links">
+          <a href="mailto:huangyidan2025@ia.ac.cn">Email</a>
+          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <p class="copyright">© <span id="year">2026</span> Yidan Huang</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -5,7 +5,28 @@
     <link>https://yidanhai.github.io/writing/</link>
     <description>Research notes on generative models, multimodal learning, agents, and post-training.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Sep 2026 17:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 02:30:00 +0000</lastBuildDate>
+    <item>
+      <title>When should a model stop thinking?</title>
+      <link>https://yidanhai.github.io/writing/reasoning-budget/</link>
+      <guid>https://yidanhai.github.io/writing/reasoning-budget/</guid>
+      <description>CATER routes reasoning compression by the student’s current competence.</description>
+      <pubDate>Wed, 30 Sep 2026 02:30:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>When the teacher disagrees with a correct answer</title>
+      <link>https://yidanhai.github.io/writing/teacher-verifier-conflict/</link>
+      <guid>https://yidanhai.github.io/writing/teacher-verifier-conflict/</guid>
+      <description>SP-OPD projects a teacher target to respect a verifier-accepted trajectory.</description>
+      <pubDate>Wed, 30 Sep 2026 02:30:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>The unit of video interaction is a trajectory</title>
+      <link>https://yidanhai.github.io/writing/streaming-interaction/</link>
+      <guid>https://yidanhai.github.io/writing/streaming-interaction/</guid>
+      <description>SVI-Bench evaluates when a streaming assistant speaks, stays silent, and remembers.</description>
+      <pubDate>Wed, 30 Sep 2026 02:30:00 +0000</pubDate>
+    </item>
     <item>
       <title>When does a color become the car's?</title>
       <link>https://yidanhai.github.io/writing/attribute-binding/</link>

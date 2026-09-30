@@ -1,0 +1,24 @@
+    <article class="article-shell">
+      <header class="article-header wrap-narrow">
+        <a class="back-link" href="/writing/"><span aria-hidden="true">←</span> <span data-lang="en">All writing</span><span data-lang="zh">返回写作</span></a>
+        <p class="eyebrow"><span class="eyebrow-dot"></span>RESEARCH NOTE <span class="article-divider">/</span> <span data-lang="en">ICLR 2027 · UNDER REVIEW</span><span data-lang="zh">ICLR 2027 · 在审</span></p>
+        <h1><span data-lang="en">The unit of video interaction is a trajectory</span><span data-lang="zh">流式视频评测，该看整段交互</span></h1>
+        <p class="article-deck"><span data-lang="en">A streaming assistant can give the right answer and still miss the moment. SVI-Bench evaluates what the user sees and hears across the whole interaction.</span><span data-lang="zh">流式助手可能回答正确，却错过该开口的时机。SVI-Bench 评估用户在整段交互中实际看见和听见的行为。</span></p>
+        <div class="article-byline"><span>YIDAN HUANG / 黄一丹</span><span>3 MIN READ</span></div>
+      </header>
+      <div class="article-banner banner-streaming" aria-hidden="true"><span>FRAME</span><i></i><span>TRIGGER</span><i></i><span>RESPONSE</span><i></i><span>MEMORY</span></div>
+      <div class="article-body wrap-narrow">
+        <p><span data-lang="en">Imagine an assistant watching a live video. It warns about a hazard, but only after the moment has passed. Or it describes a scene accurately while interrupting a user who did not ask for commentary. A response-only score misses the behavior that made either interaction fail.</span><span data-lang="zh">想象一个观看实时视频的助手：它确实提醒了危险，却等到危险已经过去；或者它描述得很准确，却在用户不需要时频繁插话。只给单条回答打分，便看不到造成交互失败的行为。</span></p>
+        <p><span data-lang="en">SVI-Bench treats the user-observable trajectory as the evaluation object. Its 75 expert-authored items span nine scenarios and five dimensions: proactive triggering, silence correctness, latency, response correctness, and delegation with long-horizon memory. Item-specific anchors express what should happen as timestamps, counts, or information points.</span><span data-lang="zh">SVI-Bench 把用户可感知的完整轨迹作为评测对象。75 个专家编写的条目覆盖九类场景和五个维度：主动触发、正确沉默、延迟、回答正确性，以及委派与长程记忆。逐条目标准用时间戳、次数或信息点明确应发生的行为。</span></p>
+
+        <h2><span data-lang="en">Speaking and silence belong together</span><span data-lang="zh">开口与沉默要放在一起评分</span></h2>
+        <p><span data-lang="en">A system that stays silent can look excellent on silence correctness while failing to act when needed. A system that speaks constantly can appear responsive while repeatedly interrupting. SVI-Bench couples proactive triggering and silence within each applicable item by taking the lower of their two scores, then combines that component with the other applicable dimensions.</span><span data-lang="zh">始终沉默的系统可能在“正确沉默”上得高分，却错过必须回应的时刻；始终开口的系统可能显得积极，却不断打断用户。SVI-Bench 在每个适用条目内取主动触发与正确沉默两项中的较低分，再与其他适用维度合成条目分数。</span></p>
+        <p><span data-lang="en">The coupling happens before averaging across items. That order matters: it asks whether a system made the right speaking decision in the same situation, rather than letting strength on unrelated examples hide a failure.</span><span data-lang="zh">这一步发生在跨条目平均之前。它检验同一情境中的开口决策是否正确，避免不同样本上的强项掩盖当前条目的失误。</span></p>
+
+        <aside class="article-pullquote"><span data-lang="en">An answer inherits its meaning from the frame and moment in which it arrives.</span><span data-lang="zh">回答是否合适，取决于它出现时的画面与时刻。</span></aside>
+
+        <h2><span data-lang="en">Make time inspectable</span><span data-lang="zh">让时间成为可核查的证据</span></h2>
+        <p><span data-lang="en">InteractFlow records synchronized traces of source video, model outputs, and event times. A judge can inspect a response alongside the visual state available when it occurred; the saved trace can be replayed and rescored. The pipeline applies a shared recording and scoring protocol while preserving each system's streaming interface.</span><span data-lang="zh">InteractFlow 同步记录源视频、模型输出和事件时间。判分者能结合回答发生时可见的画面核查它；保存的轨迹也支持复看与重新评分。流程统一录制和评分协议，同时保留各系统原有的流式接口。</span></p>
+      </div>
+      <footer class="article-end wrap-narrow"><div><span>RELATED WORK</span><a href="/work/#svibench">SVI-Bench / InteractFlow ↗</a></div><div><span>PROJECT PAGE</span><a href="https://yidanhai.github.io/SVIbench-project-page/" target="_blank" rel="noopener noreferrer"><span data-lang="en">Explore the benchmark</span><span data-lang="zh">查看基准项目</span> ↗</a></div></footer>
+    </article>
