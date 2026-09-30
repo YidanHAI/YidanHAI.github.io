@@ -6,14 +6,14 @@ manuscripts for identity, dates, roles, and method descriptions. On 30 September
 
 | Venue and status | Research |
 | --- | --- |
-| Under review, ICLR 2027 | ACTS; CATER; SP-OPD; ClueFlow; SVI-Bench |
+| Under review, ICLR 2027 | ACTS; CATER; SP-OPD; CrystalBind; ClueFlow; SVI-Bench |
 | Under review, AAAI 2027 | TEAL; SearchAuditor |
 
 A submission is described as *under review*, never as accepted or published.
 The exact manuscript titles shown for ACTS, CATER, SP-OPD, SVI-Bench, and
-SearchAuditor come from their local paper drafts. ClueFlow and TEAL are listed
-by project name because a final submitted title was not established from the
-available materials. CATER and SP-OPD are anonymous manuscripts; the site does
+SearchAuditor come from their local paper drafts. CrystalBind, ClueFlow, and
+TEAL are listed by project name because a final submitted title was not
+established from the available materials. CATER and SP-OPD are anonymous manuscripts; the site does
 not upload their PDFs or infer author order. The SVI-Bench manuscript lists
 Yidan as an equal-contribution author. The SearchAuditor draft lists Yidan as
 third author. Earlier records confirm ClueFlow's co-first-author role.
