@@ -10,8 +10,11 @@ and a small amount of JavaScript. GitHub Pages serves the repository root with
 Edit the page fragments in `site_src/pages/` and the shared frame in
 `site_src/layout.html`. English and Chinese copy sit together in
 `data-lang="en"` and `data-lang="zh"` elements. Page titles, descriptions,
-canonical URLs, the RSS feed, redirects, and the sitemap are defined in
-`build_site.py`.
+canonical URLs, the publication list (home page and CV), the RSS feed,
+redirects, and the sitemap are defined in `build_site.py`. Update a paper's
+status there when a decision arrives.
+
+The build needs Python 3.9+ (for example `/root/miniconda3/bin/python`).
 
 ```bash
 python build_site.py
@@ -32,9 +35,10 @@ python build_site.py
 python scripts/build_cv_pdfs.py
 ```
 
-PDF generation uses Python Playwright and a locally installed Chrome/Chromium
-browser. Set `CHROME_BIN` if the browser is not on `PATH`. Both PDFs are
-committed to `assets/` so site visitors do not need any build tools.
+PDF generation calls a locally installed Chrome/Chromium in headless mode; no
+Python packages are needed. Set `CHROME_BIN` if the browser is not on `PATH`.
+Both PDFs are committed to `assets/` so site visitors do not need any build
+tools.
 
 The portrait comes from Yidan Huang's own CV materials. The site self-hosts
 DM Sans and Space Grotesk; their SIL Open Font License texts are in

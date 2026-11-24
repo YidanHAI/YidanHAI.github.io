@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render both public CV PDFs from the site's print layout."""
+"""Render both public CV PDFs from the site's print layout with headless Chrome."""
 
 from __future__ import annotations
 
@@ -11,56 +11,39 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from threading import Thread
 
-from playwright.sync_api import sync_playwright
-
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> None:
     subprocess.run([sys.executable, str(ROOT / "build_site.py")], check=True)
+    browser = os.environ.get("CHROME_BIN") or shutil.which("google-chrome") or shutil.which("chromium")
+    if not browser:
+        raise SystemExit("Chrome/Chromium not found; set CHROME_BIN.")
 
     class QuietHandler(SimpleHTTPRequestHandler):
+        def __init__(self, *args: object, **kwargs: object) -> None:
+            super().__init__(*args, directory=str(ROOT), **kwargs)
+
         def log_message(self, format: str, *args: object) -> None:
             pass
 
-    old_cwd = Path.cwd()
-    os.chdir(ROOT)
     server = ThreadingHTTPServer(("127.0.0.1", 0), QuietHandler)
-    thread = Thread(target=server.serve_forever, daemon=True)
-    thread.start()
+    Thread(target=server.serve_forever, daemon=True).start()
     try:
-        browser_path = os.environ.get("CHROME_BIN") or shutil.which("google-chrome") or shutil.which("chromium")
-        with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(
-                headless=True,
-                executable_path=browser_path,
-                args=["--no-sandbox", "--disable-dev-shm-usage"],
+        for language in ("en", "zh"):
+            target = ROOT / "assets" / f"Yidan-Huang-CV-{language}.pdf"
+            # The layout reads ?lang= before first paint, so no clicks are needed.
+            subprocess.run(
+                [browser, "--headless=new", "--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage",
+                 "--force-prefers-reduced-motion", "--virtual-time-budget=5000", "--no-pdf-header-footer",
+                 f"--print-to-pdf={target}", f"http://127.0.0.1:{server.server_port}/cv/?lang={language}"],
+                check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=120,
             )
-            try:
-                address = f"http://127.0.0.1:{server.server_port}/cv/"
-                for language in ("en", "zh"):
-                    page = browser.new_page(viewport={"width": 1200, "height": 900})
-                    page.goto(address, wait_until="networkidle")
-                    if language == "zh":
-                        page.locator("#lang-toggle").click()
-                    page.evaluate("document.fonts.ready")
-                    target = ROOT / "assets" / f"Yidan-Huang-CV-{language}.pdf"
-                    page.pdf(
-                        path=str(target),
-                        format="A4",
-                        print_background=True,
-                        prefer_css_page_size=True,
-                        display_header_footer=False,
-                    )
-                    page.close()
-                    print(f"Wrote {target.relative_to(ROOT)}")
-            finally:
-                browser.close()
+            print(f"Wrote {target.relative_to(ROOT)}")
     finally:
         server.shutdown()
         server.server_close()
-        os.chdir(old_cwd)
 
 
 if __name__ == "__main__":

@@ -51,7 +51,7 @@
     if (event.key === "Escape") closeMenu();
   });
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 920) closeMenu();
+    if (window.innerWidth > 1080) closeMenu();
   }, { passive: true });
 
   const header = document.querySelector(".site-header");
@@ -88,4 +88,13 @@
     window.addEventListener("resize", updateProgress, { passive: true });
     updateProgress();
   }
+
+  const filterButtons = document.querySelectorAll(".pub-filter button");
+  filterButtons.forEach(button => button.addEventListener("click", () => {
+    const filter = button.dataset.filter;
+    filterButtons.forEach(other => other.setAttribute("aria-pressed", String(other === button)));
+    document.querySelectorAll(".pub").forEach(paper => {
+      paper.hidden = filter !== "all" && paper.dataset.status !== filter;
+    });
+  }));
 })();

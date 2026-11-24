@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#f3f2ec">
+  <meta name="theme-color" content="#f4f3ef">
   <meta name="author" content="Yidan Huang">
   <meta name="description" content="About Yidan Huang: researcher and engineer studying efficient reasoning, on-policy distillation, multimodal systems, and agents.">
   <meta property="og:type" content="website">
@@ -20,28 +20,29 @@
   <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
-  <script>try{if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
+  <script>try{var q=new URLSearchParams(location.search).get("lang");if(q==="zh"||q==="en")localStorage.setItem("yidan-lang",q);if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
   <script src="/assets/js/site.js" defer></script>
   <title>About — Yidan Huang</title>
 </head>
 <body class="inner-page" data-current="about">
   <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳转到正文</span></a>
   <header class="site-header" id="top">
-    <div class="header-inner wrap">
+    <div class="header-inner">
       <a class="brand" href="/" aria-label="Yidan Huang — Home">
-        <span class="brand-mark" aria-hidden="true">Y<span>·</span>H</span>
-        <span class="brand-copy">YIDAN HUANG <small>RESEARCH &amp; ENGINEERING</small></span>
+        <span class="brand-mark" aria-hidden="true">YH</span>
+        <span class="brand-copy">Yidan Huang<small>黄一丹</small></span>
       </a>
       <nav class="site-nav" id="site-nav" aria-label="Main navigation">
         <a href="/" data-nav="home"><span data-lang="en">Home</span><span data-lang="zh">首页</span></a>
-        <a href="/work/" data-nav="work"><span data-lang="en">Work</span><span data-lang="zh">项目</span></a>
+        <a href="/#publications" data-nav="publications"><span data-lang="en">Papers</span><span data-lang="zh">论文</span></a>
+        <a href="/work/" data-nav="work"><span data-lang="en">Research</span><span data-lang="zh">研究</span></a>
         <a href="/writing/" data-nav="writing"><span data-lang="en">Writing</span><span data-lang="zh">写作</span></a>
         <a href="/about/" data-nav="about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
         <a href="/cv/" data-nav="cv"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
-        <a class="nav-contact" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span><span aria-hidden="true"> ↗</span></a>
       </nav>
       <div class="header-actions">
         <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+        <a class="header-cta" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Contact</span><span data-lang="zh">联系</span></a>
         <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
       </div>
     </div>
@@ -62,22 +63,20 @@
   </main>
   <footer class="site-footer">
     <div class="wrap">
-      <div class="footer-top">
-        <div>
-          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">LET'S CONNECT</span><span data-lang="zh">保持联系</span></p>
-          <h2><span data-lang="en">Good work starts<br>with a good question.</span><span data-lang="zh">好的工作，始于<br>一个好的问题。</span></h2>
-        </div>
-        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email Yidan Huang"><span aria-hidden="true">↗</span></a>
+      <div class="footer-cta">
+        <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">Let's talk</span><span data-lang="zh">保持联系</span></p>
+        <h2><span data-lang="en">Open to research collaboration<br>and good questions.</span><span data-lang="zh">欢迎交流合作，<br>也欢迎好问题。</span></h2>
+        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn">huangyidan2025@ia.ac.cn <span aria-hidden="true">↗</span></a>
       </div>
       <div class="footer-bottom">
-        <div class="footer-id"><strong>YIDAN HUANG <span>黄一丹</span></strong><p><span data-lang="en">Generative models · Multimodal learning · Agents</span><span data-lang="zh">生成模型 · 多模态学习 · 智能体</span></p></div>
+        <p class="footer-id"><strong>Yidan Huang · 黄一丹</strong><span data-lang="en">LLM post-training · Reasoning · Search agents · Multimodal</span><span data-lang="zh">大模型后训练 · 推理 · 搜索智能体 · 多模态</span></p>
         <div class="footer-links">
-          <a href="mailto:huangyidan2025@ia.ac.cn">Email</a>
-          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar</a>
+          <a href="/cv/">CV</a>
           <a href="/feed.xml">RSS</a>
         </div>
-        <p class="copyright">© <span id="year">2026</span> Yidan Huang</p>
+        <p class="copyright">© <span id="year">2026</span> Yidan Huang · <span data-lang="en">Updated 2026-11-24</span><span data-lang="zh">更新于 2026-11-24</span></p>
       </div>
     </div>
   </footer>

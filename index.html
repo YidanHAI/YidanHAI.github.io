@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#f3f2ec">
+  <meta name="theme-color" content="#f4f3ef">
   <meta name="author" content="Yidan Huang">
-  <meta name="description" content="Yidan Huang researches efficient reasoning, on-policy distillation, streaming-video evaluation, multimodal learning, and evidence-grounded agents.">
+  <meta name="description" content="Yidan Huang works on LLM post-training, efficient reasoning, on-policy distillation, long-horizon search agents, and multimodal models.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yidan Huang">
-  <meta property="og:title" content="Yidan Huang — Research &amp; Engineering">
-  <meta property="og:description" content="Yidan Huang researches efficient reasoning, on-policy distillation, streaming-video evaluation, multimodal learning, and evidence-grounded agents.">
+  <meta property="og:title" content="Yidan Huang — LLM Post-Training &amp; Agents">
+  <meta property="og:description" content="Yidan Huang works on LLM post-training, efficient reasoning, on-policy distillation, long-horizon search agents, and multimodal models.">
   <meta property="og:url" content="https://yidanhai.github.io/">
   <meta property="og:image" content="https://yidanhai.github.io/assets/img/og-cover.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -20,176 +20,213 @@
   <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
-  <script>try{if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
+  <script>try{var q=new URLSearchParams(location.search).get("lang");if(q==="zh"||q==="en")localStorage.setItem("yidan-lang",q);if(localStorage.getItem("yidan-lang")==="zh"){document.documentElement.classList.add("lang-zh");document.documentElement.lang="zh-CN"}}catch(e){}</script>
   <script src="/assets/js/site.js" defer></script>
-  <title>Yidan Huang — Research &amp; Engineering</title>
+  <title>Yidan Huang — LLM Post-Training &amp; Agents</title>
 </head>
 <body class="home-page" data-current="home">
   <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳转到正文</span></a>
   <header class="site-header" id="top">
-    <div class="header-inner wrap">
+    <div class="header-inner">
       <a class="brand" href="/" aria-label="Yidan Huang — Home">
-        <span class="brand-mark" aria-hidden="true">Y<span>·</span>H</span>
-        <span class="brand-copy">YIDAN HUANG <small>RESEARCH &amp; ENGINEERING</small></span>
+        <span class="brand-mark" aria-hidden="true">YH</span>
+        <span class="brand-copy">Yidan Huang<small>黄一丹</small></span>
       </a>
       <nav class="site-nav" id="site-nav" aria-label="Main navigation">
         <a href="/" data-nav="home"><span data-lang="en">Home</span><span data-lang="zh">首页</span></a>
-        <a href="/work/" data-nav="work"><span data-lang="en">Work</span><span data-lang="zh">项目</span></a>
+        <a href="/#publications" data-nav="publications"><span data-lang="en">Papers</span><span data-lang="zh">论文</span></a>
+        <a href="/work/" data-nav="work"><span data-lang="en">Research</span><span data-lang="zh">研究</span></a>
         <a href="/writing/" data-nav="writing"><span data-lang="en">Writing</span><span data-lang="zh">写作</span></a>
         <a href="/about/" data-nav="about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
         <a href="/cv/" data-nav="cv"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
-        <a class="nav-contact" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span><span aria-hidden="true"> ↗</span></a>
       </nav>
       <div class="header-actions">
         <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+        <a class="header-cta" href="mailto:huangyidan2025@ia.ac.cn"><span data-lang="en">Contact</span><span data-lang="zh">联系</span></a>
         <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
       </div>
     </div>
   </header>
   <main id="main">
-    <section class="hero wrap">
-      <div class="hero-copy" data-reveal>
-        <p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">AI RESEARCH · BEIJING, CHINA</span><span data-lang="zh">人工智能研究 · 中国北京</span></p>
-        <h1><span data-lang="en">I study the path from <em>signal to behavior.</em></span><span data-lang="zh">追踪信息如何<em>塑造行为。</em></span></h1>
-        <p class="hero-lead"><span data-lang="en">My work spans efficient reasoning, on-policy distillation, generative and multimodal models, and agents. I trace how information is read, bound, retained, and turned into decisions.</span><span data-lang="zh">我的研究涵盖高效推理、在线蒸馏、生成与多模态模型，以及智能体：追踪信息如何被读取、绑定、保留，最终影响模型的决策。</span></p>
-        <div class="hero-actions">
-          <a class="button button-dark" href="/work/"><span data-lang="en">Explore my work</span><span data-lang="zh">查看研究项目</span><span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="/cv/"><span data-lang="en">View CV</span><span data-lang="zh">查看简历</span><span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="hero-affiliation">
-          <span class="affiliation-line"></span>
-          <p><span data-lang="en">M.S. researcher at CASIA / UCAS<br>LLM algorithm intern at JD Explore Academy</span><span data-lang="zh">中国科学院自动化研究所 / 中国科学院大学硕士研究生<br>京东探索研究院大模型算法实习生</span></p>
-        </div>
-      </div>
-      <div class="hero-visual" data-reveal>
-        <div class="visual-top"><span>YH / MODEL BEHAVIOR</span><span>01—05</span></div>
-        <svg class="evidence-map" viewBox="0 0 620 585" role="img" aria-labelledby="map-title map-desc">
-          <title id="map-title">From signal to behavior</title>
-          <desc id="map-desc">A diagram connecting inputs, internal state, decisions, and learning signals.</desc>
-          <defs>
-            <pattern id="map-grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#305045" stroke-width="1"/></pattern>
-            <linearGradient id="map-line" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7f985"/><stop offset="1" stop-color="#8ad5c0"/></linearGradient>
-          </defs>
-          <rect x="0" y="0" width="620" height="585" fill="url(#map-grid)" opacity=".45"/>
-          <circle cx="316" cy="286" r="193" fill="none" stroke="#315347" stroke-width="1.3" stroke-dasharray="4 9"/>
-          <circle cx="316" cy="286" r="129" fill="none" stroke="#456557" stroke-width="1.2"/>
-          <path d="M93 196 L191 229 L316 286 L438 183 L548 134" fill="none" stroke="url(#map-line)" stroke-width="2.4"/>
-          <path d="M86 401 L190 345 L316 286 L441 390 L548 445" fill="none" stroke="#80ab9b" stroke-width="1.8"/>
-          <path d="M191 229 L190 345 M438 183 L441 390" fill="none" stroke="#608575" stroke-width="1.2" stroke-dasharray="5 7"/>
-          <circle cx="93" cy="196" r="8" fill="#d7f985"/><circle cx="86" cy="401" r="8" fill="#d7f985"/>
-          <circle cx="548" cy="134" r="7" fill="#a9d4bd"/><circle cx="548" cy="445" r="7" fill="#a9d4bd"/>
-          <circle cx="191" cy="229" r="22" fill="#183b31" stroke="#b8ef9e" stroke-width="2"/>
-          <circle cx="190" cy="345" r="22" fill="#183b31" stroke="#b8ef9e" stroke-width="2"/>
-          <circle cx="438" cy="183" r="22" fill="#183b31" stroke="#b8ef9e" stroke-width="2"/>
-          <circle cx="441" cy="390" r="22" fill="#183b31" stroke="#b8ef9e" stroke-width="2"/>
-          <circle cx="316" cy="286" r="76" fill="#d9fa8e"/>
-          <circle cx="316" cy="286" r="61" fill="none" stroke="#23412d" stroke-width="1.5" opacity=".4"/>
-          <text x="316" y="276" text-anchor="middle" fill="#143126" font-size="14" font-weight="700" letter-spacing="3">SIGNAL</text>
-          <text x="316" y="307" text-anchor="middle" fill="#143126" font-size="26" font-weight="700">→ ACTION</text>
-          <text x="65" y="162" fill="#b4d0c0" font-size="12" letter-spacing="2">SOURCE 01</text>
-          <text x="58" y="440" fill="#b4d0c0" font-size="12" letter-spacing="2">SOURCE 02</text>
-          <text x="462" y="108" fill="#b4d0c0" font-size="12" letter-spacing="2">VERIFY</text>
-          <text x="470" y="490" fill="#b4d0c0" font-size="12" letter-spacing="2">LEARN</text>
-          <circle class="map-pulse" cx="316" cy="286" r="102" fill="none" stroke="#d9fa8e" stroke-width="1" opacity=".4"/>
-        </svg>
-        <div class="visual-bottom"><span><i></i><span data-lang="en">TRACE THE DECISION</span><span data-lang="zh">追踪每一次决策</span></span><span>© 2026</span></div>
-      </div>
-      <div class="hero-foot"><span><span data-lang="en">SCROLL TO EXPLORE</span><span data-lang="zh">向下探索</span></span><span class="scroll-line"></span><span>38° 55′ N / 116° 23′ E</span></div>
-    </section>
-
-    <section class="principles">
-      <div class="wrap principles-grid">
-        <div class="principles-intro" data-reveal><p class="eyebrow"><span data-lang="en">THE THROUGHLINE</span><span data-lang="zh">研究主线</span></p><h2><span data-lang="en">Read. Bind. Act.</span><span data-lang="zh">读取、绑定、行动。</span></h2></div>
-        <div class="principle" data-reveal><span>01 /</span><h3><span data-lang="en">Read</span><span data-lang="zh">读取</span></h3><p><span data-lang="en">Test what information a model can actually use, beyond a matching input shape.</span><span data-lang="zh">不只让输入维度匹配，更检验模型真正能用到什么信息。</span></p></div>
-        <div class="principle" data-reveal><span>02 /</span><h3><span data-lang="en">Bind</span><span data-lang="zh">绑定</span></h3><p><span data-lang="en">Trace how meanings attach to objects and when those assignments can change.</span><span data-lang="zh">追踪语义如何归属于对象，以及这种归属何时仍可改变。</span></p></div>
-        <div class="principle" data-reveal><span>03 /</span><h3><span data-lang="en">Act</span><span data-lang="zh">行动</span></h3><p><span data-lang="en">Turn evidence and trajectories into decisions that can be checked and learned from.</span><span data-lang="zh">让证据与轨迹转化为可核查、可学习的决策。</span></p></div>
-      </div>
-    </section>
-
-    <section class="review-ledger">
-      <div class="wrap">
-        <div class="review-ledger-heading" data-reveal>
-          <div><p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">CURRENT MANUSCRIPTS / 2027</span><span data-lang="zh">在审研究 / 2027</span></p><h2><span data-lang="en">Ideas in <em>motion.</em></span><span data-lang="zh">正在推进的<em>八项研究。</em></span></h2></div>
-          <p><span data-lang="en">Six manuscripts under review at ICLR 2027 and two at AAAI 2027, from reasoning and search to multimodal interfaces and streaming interaction.</span><span data-lang="zh">六篇 ICLR 2027 在审稿件、两篇 AAAI 2027 在审稿件，覆盖推理、搜索、多模态接口与流式交互。</span></p>
-        </div>
-        <div class="review-ledger-grid">
-          <div class="review-ledger-group review-ledger-iclr" data-reveal>
-            <div class="review-ledger-group-top"><div><span>ICLR / 2027</span><p><span data-lang="en">UNDER REVIEW</span><span data-lang="zh">在审</span></p></div><strong>06</strong></div>
-            <div class="review-ledger-items">
-              <a href="/work/#acts"><span>01</span><span><strong>ACTS</strong><small><span data-lang="en">Evidence paths for search agents</span><span data-lang="zh">搜索智能体的证据路径</span></small></span><b aria-hidden="true">↗</b></a>
-              <a href="/work/#cater"><span>02</span><span><strong>CATER</strong><small><span data-lang="en">Competence-adaptive reasoning</span><span data-lang="zh">按当前能力分配推理训练</span></small></span><b aria-hidden="true">↗</b></a>
-              <a href="/work/#sp-opd"><span>03</span><span><strong>SP-OPD</strong><small><span data-lang="en">Distillation that respects verification</span><span data-lang="zh">尊重验证结果的在线蒸馏</span></small></span><b aria-hidden="true">↗</b></a>
-              <a href="/work/#crystalbind"><span>04</span><span><strong>CrystalBind</strong><small><span data-lang="en">Attribute binding in diffusion models</span><span data-lang="zh">扩散模型的属性绑定</span></small></span><b aria-hidden="true">↗</b></a>
-              <a href="/work/#clueflow"><span>05</span><span><strong>ClueFlow</strong><small><span data-lang="en">Persistent state for long searches</span><span data-lang="zh">长程搜索的持久状态</span></small></span><b aria-hidden="true">↗</b></a>
-              <a href="/work/#svibench"><span>06</span><span><strong>SVI-Bench</strong><small><span data-lang="en">Streaming interaction trajectories</span><span data-lang="zh">流式视频交互轨迹</span></small></span><b aria-hidden="true">↗</b></a>
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy" data-reveal>
+          <p class="hero-status"><span class="pulse-dot" aria-hidden="true"></span><span data-lang="en">8 papers under review · ICLR &amp; AAAI 2027</span><span data-lang="zh">8 篇论文在审 · ICLR / AAAI 2027</span></p>
+          <h1>Yidan Huang<span class="hero-cn">黄一丹</span></h1>
+          <p class="hero-lead"><span data-lang="en">I work on <strong>LLM post-training</strong> and <strong>long-horizon search agents</strong> — from data and SFT to RL, on-policy distillation, and evaluation. I care about how models reason efficiently, learn from verification, and keep track of evidence.</span><span data-lang="zh">我从事<strong>大模型后训练</strong>与<strong>长程搜索智能体</strong>研究，覆盖数据、SFT、强化学习、在线蒸馏与评测。我关心模型如何高效推理、如何从验证信号中学习，以及如何在长程任务中管理证据。</span></p>
+          <ul class="hero-meta">
+            <li><span data-lang="en">M.S. student</span><span data-lang="zh">硕士研究生</span><strong>CASIA / UCAS</strong></li>
+            <li><span data-lang="en">LLM algorithm intern</span><span data-lang="zh">大模型算法实习生</span><strong><span data-lang="en">JD Explore Academy</span><span data-lang="zh">京东探索研究院</span></strong></li>
+          </ul>
+          <div class="hero-actions">
+            <a class="button button-primary" href="/#publications"><span data-lang="en">See publications</span><span data-lang="zh">查看论文</span><span aria-hidden="true">→</span></a>
+            <a class="button button-ghost" href="/cv/"><span data-lang="en">CV</span><span data-lang="zh">简历</span></a>
+            <div class="social-row">
+              <a href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email">Email</a>
+              <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+              <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">Scholar</a>
             </div>
           </div>
-          <div class="review-ledger-group review-ledger-aaai" data-reveal>
-            <div class="review-ledger-group-top"><div><span>AAAI / 2027</span><p><span data-lang="en">UNDER REVIEW</span><span data-lang="zh">在审</span></p></div><strong>02</strong></div>
-            <div class="review-ledger-items">
-              <a href="/work/#teal"><span>07</span><span><strong>TEAL</strong><small><span data-lang="en">Readable multimodal features</span><span data-lang="zh">可读的多模态特征接口</span></small></span><b aria-hidden="true">↗</b></a>
-              <a href="/work/#searchauditor"><span>08</span><span><strong>SearchAuditor</strong><small><span data-lang="en">Attributing search failures</span><span data-lang="zh">追踪搜索智能体的关键错误</span></small></span><b aria-hidden="true">↗</b></a>
-            </div>
-            <p class="review-ledger-note"><span data-lang="en">Each entry opens a research story: the question, the method, and the evidence it is designed to test.</span><span data-lang="zh">点击进入每项研究，了解问题、方法与它要检验的证据。</span></p>
-          </div>
         </div>
-        <a class="section-more" href="/work/#publications"><span data-lang="en">Explore the research record</span><span data-lang="zh">查看研究成果目录</span><span aria-hidden="true">↗</span></a>
+        <div class="hero-visual" data-reveal>
+          <div class="portrait-card">
+            <img src="/assets/img/yidan-portrait.webp" alt="Portrait of Yidan Huang" width="258" height="358">
+            <span class="portrait-tag">Beijing · 2026</span>
+          </div>
+          <a class="float-card float-card-a" href="https://arxiv.org/abs/2610.25980" target="_blank" rel="noopener noreferrer"><span class="float-kicker"><span data-lang="en">New on arXiv</span><span data-lang="zh">arXiv 新发布</span></span><strong>ClueFlow</strong><small>2610.25980 ↗</small></a>
+          <div class="float-card float-card-b"><span class="float-kicker"><span data-lang="en">First / co-first</span><span data-lang="zh">一作 / 共一</span></span><strong>6</strong><small><span data-lang="en">manuscripts in review</span><span data-lang="zh">篇在审论文</span></small></div>
+        </div>
+      </div>
+      <div class="wrap topic-marquee" aria-label="Research topics">
+        <span><span data-lang="en">Efficient reasoning</span><span data-lang="zh">高效推理</span></span><span><span data-lang="en">On-policy distillation</span><span data-lang="zh">在线蒸馏</span></span><span><span data-lang="en">Search agents</span><span data-lang="zh">搜索智能体</span></span><span><span data-lang="en">Long-context SFT</span><span data-lang="zh">长上下文 SFT</span></span><span><span data-lang="en">RL post-training</span><span data-lang="zh">强化学习后训练</span></span><span><span data-lang="en">Diffusion models</span><span data-lang="zh">扩散模型</span></span><span><span data-lang="en">Streaming video</span><span data-lang="zh">流式视频</span></span><span><span data-lang="en">Multimodal interfaces</span><span data-lang="zh">多模态接口</span></span>
       </div>
     </section>
 
-    <section class="selected-work section-dark" id="selected-work">
+    <section class="stats wrap" aria-label="At a glance">
+      <div class="stat" data-reveal><strong>8</strong><span data-lang="en">manuscripts under review at ICLR 2027 (6) and AAAI 2027 (2)</span><span data-lang="zh">篇在审稿件：ICLR 2027 六篇，AAAI 2027 两篇</span></div>
+      <div class="stat" data-reveal><strong>6</strong><span data-lang="en">as first or co-first author</span><span data-lang="zh">篇为第一或共同第一作者</span></div>
+      <div class="stat" data-reveal><strong>3</strong><span data-lang="en">arXiv papers: ClueFlow, SearchAuditor, JoyAI-LLM Flash</span><span data-lang="zh">篇 arXiv 论文：ClueFlow、SearchAuditor、JoyAI-LLM Flash</span></div>
+      <div class="stat" data-reveal><strong>2</strong><span data-lang="en">open-source releases: SVI-Bench / InteractFlow and SearchAuditor</span><span data-lang="zh">个开源项目：SVI-Bench / InteractFlow 与 SearchAuditor</span></div>
+    </section>
+
+    <section class="news wrap" id="news">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">News</span><span data-lang="zh">近期动态</span></p>
+        <h2><span data-lang="en">What's new</span><span data-lang="zh">最新进展</span></h2>
+      </div>
+      <ol class="news-list" data-reveal>
+        <li><time>2026.11</time><p><span data-lang="en">Finished author responses for all ICLR 2027 and AAAI 2027 submissions. Waiting for final decisions.</span><span data-lang="zh">完成全部 ICLR 2027 与 AAAI 2027 投稿的 rebuttal，等待最终结果。</span></p></li>
+        <li><time>2026.10</time><p><span data-lang="en"><strong>ClueFlow</strong> is on arXiv: learning long-horizon search through attributed research-state transitions.</span><span data-lang="zh"><strong>ClueFlow</strong> 已发布于 arXiv：基于可归因研究状态转移学习长程搜索。</span> <a href="https://arxiv.org/abs/2610.25980" target="_blank" rel="noopener noreferrer">arXiv:2610.25980 ↗</a></p></li>
+        <li><time>2026.09</time><p><span data-lang="en">Six manuscripts submitted to ICLR 2027: ACTS, CATER, SP-OPD, CrystalBind, ClueFlow and SVI-Bench.</span><span data-lang="zh">六篇稿件投稿 ICLR 2027：ACTS、CATER、SP-OPD、CrystalBind、ClueFlow 与 SVI-Bench。</span></p></li>
+        <li><time>2026.08</time><p><span data-lang="en"><strong>SearchAuditor</strong> is on arXiv, with a benchmark of 1,243 failed search-agent trajectories.</span><span data-lang="zh"><strong>SearchAuditor</strong> 发布于 arXiv，包含 1,243 条搜索智能体失败轨迹的评测基准。</span> <a href="https://arxiv.org/abs/2608.05212" target="_blank" rel="noopener noreferrer">arXiv:2608.05212 ↗</a></p></li>
+        <li><time>2026.04</time><p><span data-lang="en">The <strong>JoyAI-LLM Flash</strong> technical report and open model (48B total / ~2.7B active MoE) are released.</span><span data-lang="zh"><strong>JoyAI-LLM Flash</strong> 技术报告与开源模型发布（总参数 48B / 激活约 2.7B 的 MoE）。</span> <a href="https://arxiv.org/abs/2604.03044" target="_blank" rel="noopener noreferrer">arXiv:2604.03044 ↗</a></p></li>
+        <li><time>2026.01</time><p><span data-lang="en">Joined JD Explore Academy as an LLM algorithm intern.</span><span data-lang="zh">加入京东探索研究院，担任大模型算法实习生。</span></p></li>
+      </ol>
+    </section>
+
+    <section class="projects section-dark" id="research">
       <div class="wrap">
-        <div class="section-heading" data-reveal><div><p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">SELECTED WORK / 2024—2026</span><span data-lang="zh">代表工作 / 2024—2026</span></p><h2><span data-lang="en">Built for the messy<br>middle of intelligence.</span><span data-lang="zh">在真实问题里，<br>把智能做扎实。</span></h2></div><p><span data-lang="en">From efficient reasoning and on-policy distillation to multimodal interfaces, streaming video, and long-horizon agents.</span><span data-lang="zh">从高效推理与在线蒸馏，到多模态接口、流式视频与长程智能体。</span></p></div>
-        <div class="featured-grid">
-          <a class="feature-card feature-card-wide" href="/work/#acts" data-reveal>
-            <div class="feature-copy"><div class="feature-meta"><span>01 / RESEARCH</span><span>ICLR 2027 · UNDER REVIEW</span></div><div><p class="project-kicker">LONG-HORIZON SEARCH</p><h3>ACTS <span aria-hidden="true">↗</span></h3><p><span data-lang="en">What if we designed the path to evidence before writing the question? ACTS connects source facts and navigation actions so an agent can learn to search step by step.</span><span data-lang="zh">先设计证据如何被发现，再生成问题。ACTS 连接来源事实与检索动作，让智能体学会逐步取证。</span></p></div><span class="feature-tag"><span data-lang="en">Evidence-first data</span><span data-lang="zh">证据优先的数据构造</span></span></div>
-            <div class="feature-graphic" aria-hidden="true"><span class="graph-caption">DISCOVERY GRAPH / 01</span><div class="graph-node node-a">source</div><div class="graph-node node-b">clue</div><div class="graph-node node-c">query</div><div class="graph-node node-d">evidence</div><div class="graph-node node-e">answer</div><svg viewBox="0 0 420 300"><path d="M60 218 C110 218 110 128 169 128 S233 65 289 65 S330 174 381 174" fill="none" stroke="#18372a" stroke-width="3"/><path d="M169 128 C228 128 229 237 287 237 L381 174" fill="none" stroke="#7da77a" stroke-width="2" stroke-dasharray="5 7"/></svg><span class="graph-index">01 — 05</span></div>
+        <div class="section-head section-head-split" data-reveal>
+          <div>
+            <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">Selected research</span><span data-lang="zh">代表研究</span></p>
+            <h2><span data-lang="en">Reasoning, agents, and<br>multimodal systems.</span><span data-lang="zh">推理、智能体<br>与多模态系统。</span></h2>
+          </div>
+          <a class="text-link text-link-light" href="/work/"><span data-lang="en">Read every research story</span><span data-lang="zh">查看全部研究故事</span> <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="bento">
+          <a class="project-card project-wide" href="/work/#acts" data-reveal>
+            <div class="cover cover-acts" aria-hidden="true"><span class="cover-label">EVIDENCE GRAPH</span><div class="flow"><i>source</i><b></b><i>clue</i><b></b><i>search</i><b></b><i>evidence</i><b></b><i>answer</i></div></div>
+            <div class="project-body"><div class="project-meta"><span>ICLR 2027 · Under review</span><span class="chip-role"><span data-lang="en">First author</span><span data-lang="zh">第一作者</span></span></div><h3>ACTS</h3><p><span data-lang="en">Design the path to evidence before writing the question, so search agents learn step-by-step evidence gathering rather than one-shot answers.</span><span data-lang="zh">先设计证据如何被发现，再生成问题，让搜索智能体学会逐步取证，而不是一次检索就作答。</span></p></div>
           </a>
-          <a class="feature-card feature-card-violet" href="/work/#crystalbind" data-reveal><div class="feature-meta"><span>02 / GENERATION</span><span>ICLR 2027 · UNDER REVIEW</span></div><div class="binding-diagram" aria-hidden="true"><div class="binding-pair"><span><i class="binding-dot binding-purple"></i>PURPLE <b>CAR</b></span><span><i class="binding-dot binding-orange"></i>ORANGE <b>HOUSE</b></span></div><div class="binding-track"><span>NOISE</span><i></i><i></i><i></i><i></i><span>IMAGE</span></div><strong>WHEN DOES BINDING SET?</strong></div><div><p class="project-kicker">DIFFUSION MODELS</p><h3>CrystalBind <span aria-hidden="true">↗</span></h3><p><span data-lang="en">Counterfactual prompt switches probe when object–attribute assignments can still change; guidance targets the binding process without new model weights.</span><span data-lang="zh">用反事实提示词切换研究属性归属何时还能改变，并设计无需训练新权重的绑定引导。</span></p></div><span class="feature-tag"><span data-lang="en">Attribute binding</span><span data-lang="zh">属性绑定</span></span></a>
-          <a class="feature-card feature-card-sand" href="/work/#teal" data-reveal><div class="feature-meta"><span>03 / MULTIMODAL</span><span>AAAI 2027 · UNDER REVIEW</span></div><div class="interface-diagram" aria-hidden="true"><div class="interface-inputs"><span>TEXT</span><span>AUDIO</span><span>VISION</span></div><div class="interface-slots"><i></i><i></i><i></i><i></i><i></i></div><div class="interface-reader"><span>↓</span> TOKEN READER</div></div><div><p class="project-kicker">MULTIMODAL LEARNING</p><h3>TEAL <span aria-hidden="true">↗</span></h3><p><span data-lang="en">Typed evidence slots give fixed text, audio, and visual features a readable interface to pretrained token backbones.</span><span data-lang="zh">用类型化证据槽，让固定的文本、音频和视觉特征成为预训练 token 骨干可读取的输入。</span></p></div><span class="feature-tag"><span data-lang="en">Readable feature interfaces</span><span data-lang="zh">可读特征接口</span></span></a>
-          <a class="feature-card feature-card-green" href="/work/#clueflow" data-reveal><div class="feature-meta"><span>04 / RESEARCH</span><span>ICLR 2027 · UNDER REVIEW</span></div><div class="mini-diagram" aria-hidden="true"><span>SOURCE</span><b>→</b><span>STATE</span><b>→</b><span>FINAL</span></div><div><p class="project-kicker">AGENT MEMORY &amp; CREDIT</p><h3>ClueFlow <span aria-hidden="true">↗</span></h3><p><span data-lang="en">A persistent evidence and candidate ledger connects browser actions, conclusions, and turn-level learning.</span><span data-lang="zh">以持久证据与候选状态连接浏览动作、结论和逐轮学习信号。</span></p></div><span class="feature-tag"><span data-lang="en">Co-first author</span><span data-lang="zh">共同第一作者</span></span></a>
-          <a class="feature-card feature-card-blue" href="/work/#joyai" data-reveal><div class="feature-meta"><span>05 / MODEL</span><span>2026</span></div><div class="model-mark" aria-hidden="true"><span>48<span>B</span></span><small>Mixture of Experts<br>technical report</small></div><div><p class="project-kicker">FOUNDATION MODELS</p><h3>JoyAI-LLM Flash <span aria-hidden="true">↗</span></h3><p><span data-lang="en">Contributed to the technical report and open release of a token-efficient MoE model.</span><span data-lang="zh">参与高 token 效率 MoE 模型的技术报告与开源发布。</span></p></div><span class="feature-tag"><span data-lang="en">Report author</span><span data-lang="zh">技术报告署名作者</span></span></a>
+          <a class="project-card" href="/work/#clueflow" data-reveal>
+            <div class="cover cover-clueflow" aria-hidden="true"><span class="cover-label">SOURCE → STATE → FINAL</span><div class="ledger"><i></i><i></i><i></i><i></i></div></div>
+            <div class="project-body"><div class="project-meta"><span>arXiv · ICLR 2027 under review</span><span class="chip-new">arXiv</span></div><h3>ClueFlow</h3><p><span data-lang="en">Attributed research-state transitions guide both SFT and turn-level PPO for long-horizon search.</span><span data-lang="zh">以可归因的研究状态转移同时指导 SFT 与逐轮 PPO，学习长程搜索。</span></p></div>
+          </a>
+          <a class="project-card" href="/work/#cater" data-reveal>
+            <div class="cover cover-cater" aria-hidden="true"><span class="cover-label">COMPETENCE ROUTING</span><div class="bars"><i style="--h:30%"></i><i style="--h:55%"></i><i style="--h:80%"></i><i style="--h:62%"></i><i style="--h:38%"></i></div></div>
+            <div class="project-body"><div class="project-meta"><span>ICLR 2027 · Under review</span><span class="chip-role"><span data-lang="en">Co-first author</span><span data-lang="zh">共同第一作者</span></span></div><h3>CATER</h3><p><span data-lang="en">Route each problem by the student's current competence: RL where it is uncertain, concise self-distillation where it is reliable.</span><span data-lang="zh">按学生当前能力分配训练：不稳定时用强化学习，稳定后用简洁自蒸馏压缩推理。</span></p></div>
+          </a>
+          <a class="project-card" href="/work/#sp-opd" data-reveal>
+            <div class="cover cover-spopd" aria-hidden="true"><span class="cover-label">TEACHER ⟂ VERIFIER</span><div class="dist"><i style="--h:70%"></i><i style="--h:35%"></i><i class="hit" style="--h:58%"></i><i style="--h:22%"></i><i style="--h:44%"></i></div></div>
+            <div class="project-body"><div class="project-meta"><span>ICLR 2027 · Under review</span><span class="chip-role"><span data-lang="en">First author</span><span data-lang="zh">第一作者</span></span></div><h3>SP-OPD</h3><p><span data-lang="en">KL-project the teacher so on-policy distillation stops suppressing verifier-accepted tokens.</span><span data-lang="zh">用 KL 投影修正教师分布，让在线蒸馏不再压低通过验证的正确轨迹。</span></p></div>
+          </a>
+          <a class="project-card" href="/work/#crystalbind" data-reveal>
+            <div class="cover cover-crystal" aria-hidden="true"><span class="cover-label">WHEN DOES BINDING SET?</span><div class="orbs"><i></i><i></i></div></div>
+            <div class="project-body"><div class="project-meta"><span>ICLR 2027 · Under review</span><span class="chip-role"><span data-lang="en">First author</span><span data-lang="zh">第一作者</span></span></div><h3>CrystalBind</h3><p><span data-lang="en">Diagnose when attribute binding crystallizes during denoising, then guide it at inference time without new weights.</span><span data-lang="zh">诊断属性绑定在去噪中何时定型，并在推理时引导，无需训练新权重。</span></p></div>
+          </a>
+          <a class="project-card" href="/work/#teal" data-reveal>
+            <div class="cover cover-teal" aria-hidden="true"><span class="cover-label">TYPED EVIDENCE SLOTS</span><div class="slots"><i>T</i><i>A</i><i>V</i><i>∅</i></div></div>
+            <div class="project-body"><div class="project-meta"><span>AAAI 2027 · Under review</span><span class="chip-role"><span data-lang="en">First author</span><span data-lang="zh">第一作者</span></span></div><h3>TEAL</h3><p><span data-lang="en">Can token backbones actually read fixed affective features? An interface and a set of controls to find out.</span><span data-lang="zh">token 骨干能否真正读懂固定的情感特征？用新的接口与对照实验来回答。</span></p></div>
+          </a>
+          <a class="project-card" href="/work/#searchauditor" data-reveal>
+            <div class="cover cover-auditor" aria-hidden="true"><span class="cover-label">FIRST CRITICAL ERROR</span><div class="trace"><i></i><i></i><i></i><i class="err"></i><i></i><i></i></div></div>
+            <div class="project-body"><div class="project-meta"><span>arXiv · AAAI 2027 under review</span><span class="chip-new">arXiv</span></div><h3>SearchAuditor</h3><p><span data-lang="en">Localize, attribute, and repair failures in long search trajectories with evidence-grounded auditing.</span><span data-lang="zh">以证据锚定的审计，定位、归因并修复长程搜索轨迹中的失败。</span></p></div>
+          </a>
+          <a class="project-card" href="/work/#svibench" data-reveal>
+            <div class="cover cover-svi" aria-hidden="true"><span class="cover-label">SPEAK · STAY SILENT · REMEMBER</span><div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="project-body"><div class="project-meta"><span>ICLR 2027 · Under review</span><span class="chip-role"><span data-lang="en">Co-first author</span><span data-lang="zh">共同第一作者</span></span></div><h3>SVI-Bench</h3><p><span data-lang="en">Evaluate the interaction trajectory users experience in streaming video, with replayable InteractFlow traces.</span><span data-lang="zh">评估用户在流式视频中实际感受到的交互轨迹，并保留可复看的 InteractFlow 记录。</span></p></div>
+          </a>
         </div>
-        <a class="section-more section-more-light" href="/work/"><span data-lang="en">See all selected work</span><span data-lang="zh">查看全部代表工作</span><span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="publications wrap" id="publications">
+      <div class="section-head section-head-split" data-reveal>
+        <div>
+          <p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">Publications</span><span data-lang="zh">论文成果</span></p>
+          <h2><span data-lang="en">Papers &amp; preprints</span><span data-lang="zh">论文与预印本</span></h2>
+        </div>
+        <div class="pub-filter" role="group" aria-label="Filter publications">
+          <button type="button" data-filter="all" aria-pressed="true"><span data-lang="en">All</span><span data-lang="zh">全部</span></button>
+          <button type="button" data-filter="review" aria-pressed="false"><span data-lang="en">Under review</span><span data-lang="zh">在审</span></button>
+          <button type="button" data-filter="preprint" aria-pressed="false"><span data-lang="en">Preprints</span><span data-lang="zh">预印本</span></button>
+          <button type="button" data-filter="published" aria-pressed="false"><span data-lang="en">Published</span><span data-lang="zh">已发表</span></button>
+        </div>
+      </div>
+      <div class="pub-list">
+<article class="pub" id="pub-acts" data-status="review" data-topic="agents"><span class="pub-index">01</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-review"><span data-lang="en">Under review</span><span data-lang="zh">在审</span></span><span class="pub-venue">ICLR 2027</span><span class="pub-role"><span data-lang="en">First author</span><span data-lang="zh">第一作者</span></span></div><h3>ACTS: Controlling Evidence Acquisition Before Writing Questions for Search Agents</h3><p class="pub-authors"><span data-lang="en">Anonymous submission · author list withheld during review</span><span data-lang="zh">双盲评审中 · 暂不公开作者列表</span></p><div class="pub-links"><a href="/work/#acts">Story</a><a href="/writing/evidence-paths/">Note</a></div></div></article>
+<article class="pub" id="pub-cater" data-status="review" data-topic="reasoning"><span class="pub-index">02</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-review"><span data-lang="en">Under review</span><span data-lang="zh">在审</span></span><span class="pub-venue">ICLR 2027</span><span class="pub-role"><span data-lang="en">Co-first author</span><span data-lang="zh">共同第一作者</span></span></div><h3>CATER: Competence-Adaptive Training for Efficient Reasoning</h3><p class="pub-authors"><span data-lang="en">Anonymous submission · author list withheld during review</span><span data-lang="zh">双盲评审中 · 暂不公开作者列表</span></p><div class="pub-links"><a href="/work/#cater">Story</a><a href="/writing/reasoning-budget/">Note</a></div></div></article>
+<article class="pub" id="pub-sp-opd" data-status="review" data-topic="reasoning"><span class="pub-index">03</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-review"><span data-lang="en">Under review</span><span data-lang="zh">在审</span></span><span class="pub-venue">ICLR 2027</span><span class="pub-role"><span data-lang="en">First author</span><span data-lang="zh">第一作者</span></span></div><h3>When Teachers Conflict with Verifiers: Support-Preserving On-Policy Distillation</h3><p class="pub-authors"><span data-lang="en">Anonymous submission · author list withheld during review</span><span data-lang="zh">双盲评审中 · 暂不公开作者列表</span></p><div class="pub-links"><a href="/work/#sp-opd">Story</a><a href="/writing/teacher-verifier-conflict/">Note</a></div></div></article>
+<article class="pub" id="pub-clueflow" data-status="preprint" data-topic="agents"><span class="pub-index">04</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-preprint"><span data-lang="en">Preprint</span><span data-lang="zh">预印本</span></span><span class="pub-venue">arXiv 2026 · ICLR 2027 under review</span><span class="pub-role"><span data-lang="en">Third author</span><span data-lang="zh">第三作者</span></span></div><h3>ClueFlow: Learning Long-Horizon Search through Attributed Research-State Transitions</h3><p class="pub-authors">Yicheng Wang, Wentao Tan, <b>Yidan Huang</b>, Yifei Liu, Qiong Cao</p><div class="pub-links"><a href="https://arxiv.org/abs/2610.25980" target="_blank" rel="noopener noreferrer">arXiv</a><a href="https://arxiv.org/pdf/2610.25980" target="_blank" rel="noopener noreferrer">PDF</a><a href="/work/#clueflow">Story</a></div></div></article>
+<article class="pub" id="pub-crystalbind" data-status="review" data-topic="multimodal"><span class="pub-index">05</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-review"><span data-lang="en">Under review</span><span data-lang="zh">在审</span></span><span class="pub-venue">ICLR 2027</span><span class="pub-role"><span data-lang="en">First author</span><span data-lang="zh">第一作者</span></span></div><h3>Binding Crystallization: Diagnosing and Guiding Attribute Assignment in Text-to-Image Diffusion</h3><p class="pub-authors"><span data-lang="en">Anonymous submission · author list withheld during review</span><span data-lang="zh">双盲评审中 · 暂不公开作者列表</span></p><div class="pub-links"><a href="/work/#crystalbind">Story</a><a href="/writing/attribute-binding/">Note</a></div></div></article>
+<article class="pub" id="pub-svibench" data-status="review" data-topic="multimodal"><span class="pub-index">06</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-review"><span data-lang="en">Under review</span><span data-lang="zh">在审</span></span><span class="pub-venue">ICLR 2027</span><span class="pub-role"><span data-lang="en">Co-first author</span><span data-lang="zh">共同第一作者</span></span></div><h3>SVI-Bench: Evaluating Human-Perceived Interaction Trajectories in Streaming Video Systems</h3><p class="pub-authors"><span data-lang="en">Anonymous submission · author list withheld during review</span><span data-lang="zh">双盲评审中 · 暂不公开作者列表</span></p><div class="pub-links"><a href="https://yidanhai.github.io/SVIbench-project-page/" target="_blank" rel="noopener noreferrer">Project</a><a href="https://github.com/YidanHAI/VL-Interaction-interactflow" target="_blank" rel="noopener noreferrer">Code</a><a href="/writing/streaming-interaction/">Note</a></div></div></article>
+<article class="pub" id="pub-teal" data-status="review" data-topic="multimodal"><span class="pub-index">07</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-review"><span data-lang="en">Under review</span><span data-lang="zh">在审</span></span><span class="pub-venue">AAAI 2027</span><span class="pub-role"><span data-lang="en">First author</span><span data-lang="zh">第一作者</span></span></div><h3>Can Token Backbones Read Fixed Affective Features?</h3><p class="pub-authors"><span data-lang="en">Anonymous submission · author list withheld during review</span><span data-lang="zh">双盲评审中 · 暂不公开作者列表</span></p><div class="pub-links"><a href="/work/#teal">Story</a><a href="/writing/feature-interface/">Note</a></div></div></article>
+<article class="pub" id="pub-searchauditor" data-status="preprint" data-topic="agents"><span class="pub-index">08</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-preprint"><span data-lang="en">Preprint</span><span data-lang="zh">预印本</span></span><span class="pub-venue">arXiv 2026 · AAAI 2027 under review</span><span class="pub-role"><span data-lang="en">Third author</span><span data-lang="zh">第三作者</span></span></div><h3>SearchAuditor: Auditing and Attributing Failures in Long-Horizon Search Agents</h3><p class="pub-authors">Zhixiang Liang, Yifei Liu, <b>Yidan Huang</b>, Haozhe Zhao, Beichen Huang, Jiaqi Wang, Nan Duan, Qiong Cao</p><div class="pub-links"><a href="https://arxiv.org/abs/2608.05212" target="_blank" rel="noopener noreferrer">arXiv</a><a href="https://github.com/lzzzx666/SearchAuditor" target="_blank" rel="noopener noreferrer">Code</a><a href="/work/#searchauditor">Story</a></div></div></article>
+<article class="pub" id="pub-joyai" data-status="preprint" data-topic="foundation"><span class="pub-index">09</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-preprint"><span data-lang="en">Preprint</span><span data-lang="zh">预印本</span></span><span class="pub-venue">Technical report · arXiv 2026</span><span class="pub-role"><span data-lang="en">Contributor</span><span data-lang="zh">参与作者</span></span></div><h3>JoyAI-LLM Flash: Advancing Mid-Scale LLMs with Token Efficiency</h3><p class="pub-authors">Aichen Cai et al., including <b>Yidan Huang</b></p><div class="pub-links"><a href="https://arxiv.org/abs/2604.03044" target="_blank" rel="noopener noreferrer">arXiv</a><a href="https://huggingface.co/jdopensource/JoyAI-LLM-Flash" target="_blank" rel="noopener noreferrer">Model</a></div></div></article>
+<article class="pub" id="pub-eggs" data-status="published" data-topic="vision"><span class="pub-index">10</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-published"><span data-lang="en">Published</span><span data-lang="zh">已发表</span></span><span class="pub-venue">Foods 2024</span><span class="pub-role"><span data-lang="en">Second author</span><span data-lang="zh">第二作者</span></span></div><h3>Robust Detection of Cracked Eggs Using a Multi-Domain Training Method for Practical Egg Production</h3><p class="pub-authors">Yuxuan Cheng, <b>Yidan Huang</b>, Jingjing Zhang, Xuehong Zhang, Qiaohua Wang, Wei Fan</p><div class="pub-links"><a href="https://doi.org/10.3390/foods13152313" target="_blank" rel="noopener noreferrer">DOI</a></div></div></article>
+<article class="pub" id="pub-pv" data-status="published" data-topic="forecasting"><span class="pub-index">11</span><div class="pub-body"><div class="pub-tags"><span class="pub-status pub-status-published"><span data-lang="en">Published</span><span data-lang="zh">已发表</span></span><span class="pub-venue">ICCEA 2024 · IEEE</span><span class="pub-role"><span data-lang="en">Co-first author</span><span data-lang="zh">共同第一作者</span></span></div><h3>A Study of a Photovoltaic Power Prediction Method Combining BiLSTM and GWO</h3><p class="pub-authors">Xiaokang Gui, Lewen Tan, <b>Yidan Huang</b></p><div class="pub-links"><a href="https://doi.org/10.1109/ICCEA62105.2024.10604113" target="_blank" rel="noopener noreferrer">DOI</a></div></div></article>
+      </div>
+      <p class="pub-footnote"><span data-lang="en">Under-review papers are listed by title and my author role only. Their status will be updated when decisions are announced.</span><span data-lang="zh">在审论文只列标题与本人署名位次，录用结果公布后更新。</span></p>
+    </section>
+
+    <section class="experience-band">
+      <div class="wrap experience-grid">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">Experience</span><span data-lang="zh">经历</span></p>
+          <h2><span data-lang="en">From data to deployed models.</span><span data-lang="zh">从数据，到交付的模型。</span></h2>
+          <a class="text-link" href="/about/"><span data-lang="en">More about me</span><span data-lang="zh">了解更多</span> <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="timeline" data-reveal>
+          <div class="timeline-item"><time>2026.01 —</time><div><h3><span data-lang="en">JD Explore Academy</span><span data-lang="zh">京东探索研究院</span></h3><p class="timeline-role"><span data-lang="en">LLM Algorithm Intern</span><span data-lang="zh">大模型算法实习生</span></p><p><span data-lang="en">Work on LLM post-training — data, SFT, preference optimization and RL — and on search agents and their evaluation. Contributor to the open JoyAI-LLM Flash model.</span><span data-lang="zh">从事大模型后训练（数据、SFT、偏好优化与强化学习）以及搜索智能体与评测相关工作；参与开源模型 JoyAI-LLM Flash。</span></p></div></div>
+          <div class="timeline-item"><time>2025 — 2028</time><div><h3><span data-lang="en">Institute of Automation, CAS / UCAS</span><span data-lang="zh">中国科学院自动化研究所 / 中国科学院大学</span></h3><p class="timeline-role"><span data-lang="en">M.S., Computer Application Technology</span><span data-lang="zh">计算机应用技术 硕士</span></p></div></div>
+          <div class="timeline-item"><time>2021 — 2025</time><div><h3><span data-lang="en">Huazhong Agricultural University</span><span data-lang="zh">华中农业大学</span></h3><p class="timeline-role"><span data-lang="en">B.S., Information &amp; Computing Science</span><span data-lang="zh">信息与计算科学 学士</span></p><p><span data-lang="en">GPA 3.92/4.00 · Rank 1/102 · National Scholarship (×2)</span><span data-lang="zh">GPA 3.92/4.00 · 专业排名 1/102 · 两次国家奖学金</span></p></div></div>
+        </div>
       </div>
     </section>
 
     <section class="writing-preview wrap">
-      <div class="section-heading" data-reveal><div><p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">FIELD NOTES</span><span data-lang="zh">研究手记</span></p><h2><span data-lang="en">Thoughts from the workbench.</span><span data-lang="zh">写在工作台旁。</span></h2></div><p><span data-lang="en">Short essays on how models read signals, bind meaning, and turn evidence into behavior.</span><span data-lang="zh">记录模型如何读取信号、绑定语义，并把证据转化为行为。</span></p></div>
-      <div class="note-list">
-        <a class="note-row" href="/writing/reasoning-budget/" data-reveal><span class="note-number">01</span><span class="note-title"><strong><span data-lang="en">When should a model stop thinking?</span><span data-lang="zh">模型什么时候该少想一步？</span></strong><small><span data-lang="en">On competence-adaptive training for efficient reasoning</span><span data-lang="zh">关于按当前能力分配高效推理训练</span></small></span><span class="note-date">SEP 2026</span><span class="note-arrow" aria-hidden="true">↗</span></a>
-        <a class="note-row" href="/writing/teacher-verifier-conflict/" data-reveal><span class="note-number">02</span><span class="note-title"><strong><span data-lang="en">When the teacher disagrees with a correct answer</span><span data-lang="zh">教师与正确解答意见相左时</span></strong><small><span data-lang="en">On support-preserving on-policy distillation</span><span data-lang="zh">关于保留正确轨迹支持的在线蒸馏</span></small></span><span class="note-date">SEP 2026</span><span class="note-arrow" aria-hidden="true">↗</span></a>
-        <a class="note-row" href="/writing/streaming-interaction/" data-reveal><span class="note-number">03</span><span class="note-title"><strong><span data-lang="en">The unit of video interaction is a trajectory</span><span data-lang="zh">流式视频评测，该看整段交互</span></strong><small><span data-lang="en">On SVI-Bench and inspectable streaming-video evaluation</span><span data-lang="zh">关于 SVI-Bench 与可核查的流式视频评测</span></small></span><span class="note-date">SEP 2026</span><span class="note-arrow" aria-hidden="true">↗</span></a>
+      <div class="section-head section-head-split" data-reveal>
+        <div>
+          <p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">Field notes</span><span data-lang="zh">研究手记</span></p>
+          <h2><span data-lang="en">Writing</span><span data-lang="zh">写作</span></h2>
+        </div>
+        <a class="text-link" href="/writing/"><span data-lang="en">All notes</span><span data-lang="zh">全部文章</span> <span aria-hidden="true">→</span></a>
       </div>
-      <a class="section-more" href="/writing/"><span data-lang="en">Browse all writing</span><span data-lang="zh">阅读全部文章</span><span aria-hidden="true">↗</span></a>
-    </section>
-
-    <section class="about-preview">
-      <div class="wrap about-preview-grid">
-        <div class="about-preview-photo" data-reveal><img src="/assets/img/yidan-portrait.webp" alt="Portrait of Yidan Huang" loading="lazy" width="258" height="358"><span class="photo-index">YH / 2026</span></div>
-        <div class="about-preview-copy" data-reveal><p class="eyebrow"><span class="eyebrow-dot"></span><span data-lang="en">THE PERSON BEHIND THE WORK</span><span data-lang="zh">关于我</span></p><h2><span data-lang="en">Curious about the gap between <em>a good demo</em> and a dependable system.</span><span data-lang="zh">关注从<em>精彩演示</em>到可靠系统之间的距离。</span></h2><p><span data-lang="en">I'm Yidan Huang, a master's student at the Institute of Automation, Chinese Academy of Sciences. At JD Explore Academy, I work on large-model post-training and agent systems. I like research that can be explained from its data all the way to its behavior.</span><span data-lang="zh">我是黄一丹，中国科学院自动化研究所硕士研究生，在京东探索研究院从事大模型后训练与智能体研发。我喜欢能从数据一路解释到最终行为的研究。</span></p><a class="text-link" href="/about/"><span data-lang="en">More about me</span><span data-lang="zh">了解更多</span><span aria-hidden="true">↗</span></a></div>
+      <div class="note-grid">
+        <a class="note-card" href="/writing/persistent-state/" data-reveal><span class="note-topic">AGENT STATE</span><h3><span data-lang="en">A search agent needs a ledger, not a longer transcript</span><span data-lang="zh">搜索智能体需要一本账，而非更长的对话</span></h3><span class="note-foot">ClueFlow <span aria-hidden="true">→</span></span></a>
+        <a class="note-card" href="/writing/reasoning-budget/" data-reveal><span class="note-topic">REASONING</span><h3><span data-lang="en">When should a model stop thinking?</span><span data-lang="zh">模型什么时候该少想一步？</span></h3><span class="note-foot">CATER <span aria-hidden="true">→</span></span></a>
+        <a class="note-card" href="/writing/teacher-verifier-conflict/" data-reveal><span class="note-topic">DISTILLATION</span><h3><span data-lang="en">When the teacher disagrees with a correct answer</span><span data-lang="zh">教师与正确解答意见相左时</span></h3><span class="note-foot">SP-OPD <span aria-hidden="true">→</span></span></a>
       </div>
     </section>
 
   </main>
   <footer class="site-footer">
     <div class="wrap">
-      <div class="footer-top">
-        <div>
-          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">LET'S CONNECT</span><span data-lang="zh">保持联系</span></p>
-          <h2><span data-lang="en">Good work starts<br>with a good question.</span><span data-lang="zh">好的工作，始于<br>一个好的问题。</span></h2>
-        </div>
-        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn" aria-label="Email Yidan Huang"><span aria-hidden="true">↗</span></a>
+      <div class="footer-cta">
+        <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span><span data-lang="en">Let's talk</span><span data-lang="zh">保持联系</span></p>
+        <h2><span data-lang="en">Open to research collaboration<br>and good questions.</span><span data-lang="zh">欢迎交流合作，<br>也欢迎好问题。</span></h2>
+        <a class="footer-mail" href="mailto:huangyidan2025@ia.ac.cn">huangyidan2025@ia.ac.cn <span aria-hidden="true">↗</span></a>
       </div>
       <div class="footer-bottom">
-        <div class="footer-id"><strong>YIDAN HUANG <span>黄一丹</span></strong><p><span data-lang="en">Generative models · Multimodal learning · Agents</span><span data-lang="zh">生成模型 · 多模态学习 · 智能体</span></p></div>
+        <p class="footer-id"><strong>Yidan Huang · 黄一丹</strong><span data-lang="en">LLM post-training · Reasoning · Search agents · Multimodal</span><span data-lang="zh">大模型后训练 · 推理 · 搜索智能体 · 多模态</span></p>
         <div class="footer-links">
-          <a href="mailto:huangyidan2025@ia.ac.cn">Email</a>
-          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="https://github.com/YidanHAI" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://scholar.google.com/citations?user=6urQIKIAAAAJ" target="_blank" rel="noopener noreferrer">Scholar</a>
+          <a href="/cv/">CV</a>
           <a href="/feed.xml">RSS</a>
         </div>
-        <p class="copyright">© <span id="year">2026</span> Yidan Huang</p>
+        <p class="copyright">© <span id="year">2026</span> Yidan Huang · <span data-lang="en">Updated 2026-11-24</span><span data-lang="zh">更新于 2026-11-24</span></p>
       </div>
     </div>
   </footer>

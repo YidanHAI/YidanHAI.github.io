@@ -14,7 +14,139 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parent
 SOURCE = ROOT / "site_src"
 BASE_URL = "https://yidanhai.github.io"
-UPDATED = "2026-09-30"
+UPDATED = "2026-11-24"
+ME = "Yidan Huang"
+
+
+@dataclass(frozen=True)
+class Link:
+    label: str
+    href: str
+
+
+@dataclass(frozen=True)
+class Paper:
+    key: str
+    title: str
+    authors: str
+    role: tuple[str, str]
+    venue: str
+    status: str
+    topic: str
+    links: tuple[Link, ...] = ()
+
+
+def bilingual(en: str, zh: str) -> str:
+    return f'<span data-lang="en">{en}</span><span data-lang="zh">{zh}</span>'
+
+
+REVIEW_ICLR = "ICLR 2027"
+REVIEW_AAAI = "AAAI 2027"
+FIRST = ("First author", "第一作者")
+CO_FIRST = ("Co-first author", "共同第一作者")
+THIRD = ("Third author", "第三作者")
+
+# Single source for the publication list on the home page and the CV.
+# Under-review venues stay "Under review" until an official decision arrives.
+PAPERS = (
+    Paper("acts", "ACTS: Controlling Evidence Acquisition Before Writing Questions for Search Agents",
+          "", FIRST, REVIEW_ICLR, "review", "agents",
+          (Link("Story", "/work/#acts"), Link("Note", "/writing/evidence-paths/"))),
+    Paper("cater", "CATER: Competence-Adaptive Training for Efficient Reasoning",
+          "", CO_FIRST, REVIEW_ICLR, "review", "reasoning",
+          (Link("Story", "/work/#cater"), Link("Note", "/writing/reasoning-budget/"))),
+    Paper("sp-opd", "When Teachers Conflict with Verifiers: Support-Preserving On-Policy Distillation",
+          "", FIRST, REVIEW_ICLR, "review", "reasoning",
+          (Link("Story", "/work/#sp-opd"), Link("Note", "/writing/teacher-verifier-conflict/"))),
+    Paper("clueflow", "ClueFlow: Learning Long-Horizon Search through Attributed Research-State Transitions",
+          "Yicheng Wang, Wentao Tan, Yidan Huang, Yifei Liu, Qiong Cao", THIRD,
+          "arXiv 2026 · ICLR 2027 under review", "preprint", "agents",
+          (Link("arXiv", "https://arxiv.org/abs/2610.25980"), Link("PDF", "https://arxiv.org/pdf/2610.25980"),
+           Link("Story", "/work/#clueflow"))),
+    Paper("crystalbind", "Binding Crystallization: Diagnosing and Guiding Attribute Assignment in Text-to-Image Diffusion",
+          "", FIRST, REVIEW_ICLR, "review", "multimodal",
+          (Link("Story", "/work/#crystalbind"), Link("Note", "/writing/attribute-binding/"))),
+    Paper("svibench", "SVI-Bench: Evaluating Human-Perceived Interaction Trajectories in Streaming Video Systems",
+          "", CO_FIRST, REVIEW_ICLR, "review", "multimodal",
+          (Link("Project", "https://yidanhai.github.io/SVIbench-project-page/"),
+           Link("Code", "https://github.com/YidanHAI/VL-Interaction-interactflow"),
+           Link("Note", "/writing/streaming-interaction/"))),
+    Paper("teal", "Can Token Backbones Read Fixed Affective Features?",
+          "", FIRST, REVIEW_AAAI, "review", "multimodal",
+          (Link("Story", "/work/#teal"), Link("Note", "/writing/feature-interface/"))),
+    Paper("searchauditor", "SearchAuditor: Auditing and Attributing Failures in Long-Horizon Search Agents",
+          "Zhixiang Liang, Yifei Liu, Yidan Huang, Haozhe Zhao, Beichen Huang, Jiaqi Wang, Nan Duan, Qiong Cao",
+          THIRD, "arXiv 2026 · AAAI 2027 under review", "preprint", "agents",
+          (Link("arXiv", "https://arxiv.org/abs/2608.05212"), Link("Code", "https://github.com/lzzzx666/SearchAuditor"),
+           Link("Story", "/work/#searchauditor"))),
+    Paper("joyai", "JoyAI-LLM Flash: Advancing Mid-Scale LLMs with Token Efficiency",
+          "Aichen Cai et al., including Yidan Huang", ("Contributor", "参与作者"),
+          "Technical report · arXiv 2026", "preprint", "foundation",
+          (Link("arXiv", "https://arxiv.org/abs/2604.03044"),
+           Link("Model", "https://huggingface.co/jdopensource/JoyAI-LLM-Flash"))),
+    Paper("eggs", "Robust Detection of Cracked Eggs Using a Multi-Domain Training Method for Practical Egg Production",
+          "Yuxuan Cheng, Yidan Huang, Jingjing Zhang, Xuehong Zhang, Qiaohua Wang, Wei Fan",
+          ("Second author", "第二作者"), "Foods 2024", "published", "vision",
+          (Link("DOI", "https://doi.org/10.3390/foods13152313"),)),
+    Paper("pv", "A Study of a Photovoltaic Power Prediction Method Combining BiLSTM and GWO",
+          "Xiaokang Gui, Lewen Tan, Yidan Huang", CO_FIRST, "ICCEA 2024 · IEEE", "published", "forecasting",
+          (Link("DOI", "https://doi.org/10.1109/ICCEA62105.2024.10604113"),)),
+)
+
+STATUS_LABEL = {
+    "review": ("Under review", "在审"),
+    "preprint": ("Preprint", "预印本"),
+    "published": ("Published", "已发表"),
+}
+
+
+def render_authors(paper: Paper) -> str:
+    if not paper.authors:
+        return bilingual("Anonymous submission · author list withheld during review",
+                         "双盲评审中 · 暂不公开作者列表")
+    return escape(paper.authors).replace(ME, f"<b>{ME}</b>")
+
+
+def render_links(paper: Paper) -> str:
+    items = []
+    for link in paper.links:
+        external = link.href.startswith("http")
+        attrs = ' target="_blank" rel="noopener noreferrer"' if external else ""
+        items.append(f'<a href="{escape(link.href, quote=True)}"{attrs}>{escape(link.label)}</a>')
+    return "".join(items)
+
+
+def render_publications() -> str:
+    rows = []
+    for index, paper in enumerate(PAPERS, 1):
+        role = f'<span class="pub-role">{bilingual(*paper.role)}</span>' if paper.role[0] else ""
+        rows.append(
+            f'<article class="pub" id="pub-{paper.key}" data-status="{paper.status}" data-topic="{paper.topic}">'
+            f'<span class="pub-index">{index:02d}</span>'
+            f'<div class="pub-body">'
+            f'<div class="pub-tags"><span class="pub-status pub-status-{paper.status}">{bilingual(*STATUS_LABEL[paper.status])}</span>'
+            f'<span class="pub-venue">{escape(paper.venue)}</span>{role}</div>'
+            f'<h3>{escape(paper.title)}</h3>'
+            f'<p class="pub-authors">{render_authors(paper)}</p>'
+            f'<div class="pub-links">{render_links(paper)}</div>'
+            f'</div></article>'
+        )
+    return "\n".join(rows)
+
+
+def render_cv_publications() -> str:
+    rows = []
+    for paper in PAPERS:
+        role = f" · {bilingual(*paper.role)}" if paper.role[0] else ""
+        authors = f"{render_authors(paper)}. " if paper.authors else ""
+        link = next((l for l in paper.links if l.label in {"arXiv", "DOI"}), None)
+        link_html = f' <a href="{escape(link.href, quote=True)}">{escape(link.label)} ↗</a>' if link else ""
+        title = paper.title if paper.title.endswith(("?", ".")) else f"{paper.title}."
+        venue = escape(paper.venue)
+        if paper.status == "review":
+            venue += f" · {bilingual(*STATUS_LABEL['review'])}"
+        rows.append(f'<li><em>{escape(title)}</em> {authors}<span class="cv-venue">{venue}{role}</span>{link_html}</li>')
+    return '<ol class="cv-pub-list">' + "".join(rows) + "</ol>"
 
 
 @dataclass(frozen=True)
@@ -43,13 +175,13 @@ class Page:
 PAGES = (
     Page(
         "/", "home.html",
-        "Yidan Huang — Research & Engineering",
-        "Yidan Huang researches efficient reasoning, on-policy distillation, streaming-video evaluation, multimodal learning, and evidence-grounded agents.",
+        "Yidan Huang — LLM Post-Training & Agents",
+        "Yidan Huang works on LLM post-training, efficient reasoning, on-policy distillation, long-horizon search agents, and multimodal models.",
         "home", "home-page",
     ),
     Page(
         "/work/", "work.html",
-        "Selected Work — Yidan Huang",
+        "Research — Yidan Huang",
         "Selected research on reasoning efficiency, on-policy distillation, streaming interaction, multimodal interfaces, and search agents.",
         "work", "inner-page",
     ),
@@ -157,7 +289,7 @@ ARTICLES = (
 
 
 REDIRECTS = {
-    "/publications/": "/work/#publications",
+    "/publications/": "/#publications",
     "/portfolio/": "/work/",
     "/year-archive/": "/writing/",
     "/resume/": "/cv/",
@@ -170,7 +302,11 @@ REDIRECTS = {
 
 def write_page(page: Page, layout: str) -> None:
     body = (SOURCE / "pages" / page.source).read_text(encoding="utf-8")
+    body = body.replace("{{PUBLICATIONS}}", render_publications())
+    body = body.replace("{{CV_PUBLICATIONS}}", render_cv_publications())
+    body = body.replace("{{UPDATED}}", UPDATED)
     replacements = {
+        "{{UPDATED}}": UPDATED,
         "{{TITLE}}": escape(page.title, quote=True),
         "{{DESCRIPTION}}": escape(page.description, quote=True),
         "{{CANONICAL}}": escape(page.url, quote=True),
